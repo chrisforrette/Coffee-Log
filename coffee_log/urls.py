@@ -11,6 +11,6 @@ urlpatterns = patterns('',
     
     (r'^/?(?P<path>(_lib|_img)/.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(os.path.dirname(__file__)), 'http').replace('\\', '/')}),
     
-    (r'^/?$', 'coffee.views.index')
+    (r'^/?$', 'coffee_log.coffee.views.index')
     
 )
