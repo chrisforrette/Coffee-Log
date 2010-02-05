@@ -7,18 +7,45 @@ BASIC
 body {
     background-color: #341900;
     color: #fff;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 1em;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
     line-height: 1.4em;
 }
 
 h1 {
+    background: url('/_img/text/txt_coffee_log.gif') 0 0 no-repeat;
     font-size: 30px;
     font-weight: normal;
+    height: 70px;
+    width: 288px;
 }
 
 h2 {
-    padding-bottom: 10px;
+    border-bottom: 1px solid #d9c298;
+    font-size: 14px;
+    line-height: 1em;
+    padding: 15px 25px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #f2d9aa;
+    height: 0;
+    margin: 0;
+}
+
+/*
+----------------------------------------------------
+GLOBAL
+----------------------------------------------------
+*/
+
+.alt {
+    display: none;
+}
+
+hr.lt {
+    border-color: #f2d9aa;
 }
 
 /*
@@ -40,11 +67,13 @@ LAYOUT
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     background-color: #e6cea1;
-    color: #1a0c00;
+    color: #341900;
+    padding: 5px 0;
 }
 
-.content-inset {
-    padding: 10px;
+#content a {
+    color: #994a00;
+    font-weight: bold;
 }
 
 /*
@@ -54,32 +83,35 @@ COFFEE LOGS
 */
 
 .coffee-logs {
-    border-top: 1px solid #bbb;
     margin-bottom: 20px;
 }
 
 .coffee-logs li {
-    border: 1px solid #bbb;
-    border-top: none;
-    padding: 5px 10px;
+    background-color: #fec;
+    border-bottom: 1px solid #d9c298;
+    line-height: 38px;
 }
 
-.coffee-logs li.odd {
-    background-color: #eee;
-}
-
-.coffee-logs li.even {
-    background-color: #fff;
+.coffee-logs .date,
+.coffee-logs .info {
+    float: left;
 }
 
 .coffee-logs .date {
-    color: #665b47;
-    font-size: 0.8em;
+    color: #99896b;
+    font-weight: bold;
+    padding: 0 10px 0 25px;
+    width: 165px;
+}
+
+.coffee-logs .info {
+    background: url('/_img/background/bg_timeline_item.gif') 0 0 no-repeat;
+    padding: 0 30px;
+    width: 840px;
 }
 
 .charts {
-/*    background-color: #fff;*/
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-    padding: 20px 0;
+    padding: 20px 25px;
 }

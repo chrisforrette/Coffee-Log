@@ -13,9 +13,10 @@ def index(request):
     
     for drink in coffee_drinks:
         count = CoffeeLog.objects.filter(coffee_drink=drink.pk).count()
-        drink_names.append(drink)
-        drink_counts.append(count)
-        total += count
+        if count > 0:
+            drink_names.append(drink)
+            drink_counts.append(count)
+            total += count
     
     # Figure percents
     

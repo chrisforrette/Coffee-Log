@@ -1,0 +1,16 @@
+div.cf,
+div.cl,
+div.cr {
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+}
+
+.cf { clear: both; }
+.cl { clear: left; }
+.cr { clear: right; }
+
+.fl { float: left; }
+.fr { float: right; }
+
+.alt { display: none; }
