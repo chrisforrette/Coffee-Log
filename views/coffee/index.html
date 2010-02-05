@@ -1,0 +1,26 @@
+{% extends "master.html" %}
+
+{% block master_content %}
+    <h2>Coffee Logs</h2>
+    <ol class="coffee-logs">
+        {% for coffee_log in coffee_logs %}
+        <li class="{% cycle "odd" "even" %}">
+            <h3 class="date">{{ coffee_log.consumption|date:"F j, Y g:ia" }}</h3> 
+            {% if coffee_log.coffee_drink_size %}{{ coffee_log.coffee_drink_size }} {% endif %}
+            {{ coffee_log.coffee_drink }}
+            {% if coffee_log.coffee_bean %}made with {{ coffee_log.coffee_bean }} coffee beans {% endif %}
+            {% if coffee_log.coffee_place %}from 
+            {% if coffee_log.coffee_place.url %}
+            <a href="{{ coffee_log.coffee_place.url }}" target="_blank">{{ coffee_log.coffee_place }}</a>
+            {% else %}
+            {{ coffee_log.coffee_place }}
+            {% endif %}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+    <h2>Charts</h2>
+    <div class="charts">
+        <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ drink_pcts|join:"," }}&amp;chs=350x100&amp;chl={{ drink_names|join:"|" }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+    </div>
+{% endblock %}
