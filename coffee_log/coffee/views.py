@@ -1,6 +1,7 @@
 import math
 from django.shortcuts import render_to_response, get_object_or_404
-from coffee_log.coffee.models import CoffeeLog, CoffeeDrink
+from django.db.models import Count
+from coffee_log.coffee.models import CoffeeLog, CoffeeDrink, CoffeePlace
 
 def index(request):
     coffee_logs = CoffeeLog.objects.all()
@@ -22,5 +23,21 @@ def index(request):
     
     for count in drink_counts:
         drink_pcts.append(int(round((float(count)/float(total)) * 100)))
+    
+    # Count place visits
+    
+    places = CoffeePlace.objects.all().annotate(log_count=Count('coffeelog'))
+    place_names = []
+    place_counts = []
+    place_pcts = []
+    
+    for place in places:
+        place_names.append(place.name)
+        place_counts.append(place.log_count)
+    
+    total = sum(place_counts)
+    
+    for count in place_counts:
+        place_pcts.append(int(round((float(count)/float(total)) * 100))) 
     
     return render_to_response('coffee/index.html', locals())

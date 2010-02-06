@@ -27,6 +27,7 @@
     <h2>Charts</h2>
     <hr class="lt" />
     <div class="charts">
-        <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ drink_pcts|join:"," }}&amp;chs=350x200&amp;chl={{ drink_names|join:"|" }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+        <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ drink_pcts|join:"," }}&amp;chs=350x200&amp;chl={{ drink_names|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+        <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ place_pcts|join:"," }}&amp;chs=650x200&amp;chl={{ place_names|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
     </div>
 {% endblock %}
