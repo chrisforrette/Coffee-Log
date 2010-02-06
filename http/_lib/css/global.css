@@ -13,11 +13,20 @@ body {
 }
 
 h1 {
-    background: url('/_img/text/txt_coffee_log.gif') 0 0 no-repeat;
     font-size: 30px;
     font-weight: normal;
+    
+}
+
+h1,
+h1 a {
+    display: block;
     height: 70px;
     width: 288px;
+}
+
+h1 a {
+    background: url('/_img/text/txt_coffee_log.gif') 0 0 no-repeat;
 }
 
 h2 {
@@ -32,6 +41,10 @@ hr {
     border-top: 1px solid #f2d9aa;
     height: 0;
     margin: 0;
+}
+
+a {
+    text-decoration: none;
 }
 
 /*
@@ -76,6 +89,14 @@ LAYOUT
     font-weight: bold;
 }
 
+#content a:hover {
+    color: #b35600;
+}
+
+.content-inset {
+    padding: 25px;
+}
+
 /*
 ----------------------------------------------------
 COFFEE LOGS
@@ -114,4 +135,17 @@ COFFEE LOGS
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     padding: 20px 25px;
+}
+
+/*
+----------------------------------------------------
+COFFEE PLACES
+----------------------------------------------------
+*/
+
+#coffee-place-map {
+    border: 5px solid #ccb78f;
+    height: 300px;
+    margin-bottom: 25px;
+    width: 1040px;
 }

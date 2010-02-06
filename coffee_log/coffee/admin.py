@@ -44,6 +44,16 @@ class CoffeePlaceAdmin(admin.ModelAdmin):
         "slug": ("name",)
     }
 
+class CoffeePlaceCategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 
+        'created',
+    )
+    list_filter = ('status',)
+    prepopulated_fields = {
+        "slug": ("name",)
+    }
+
 class CoffeeLogAdmin(admin.ModelAdmin):
     list_display = (
         'coffee_drink', 
@@ -55,9 +65,11 @@ class CoffeeLogAdmin(admin.ModelAdmin):
     ordering = ['-consumption']
     list_filter = list_display
 
-admin.site.register(CoffeeRoaster, CoffeeRoasterAdmin)
 admin.site.register(CoffeeBean, CoffeeBeanAdmin)
 admin.site.register(CoffeeDrink, CoffeeDrinkAdmin)
 admin.site.register(CoffeeDrinkSize, CoffeeDrinkSizeAdmin)
-admin.site.register(CoffeePlace, CoffeePlaceAdmin)
 admin.site.register(CoffeeLog, CoffeeLogAdmin)
+admin.site.register(CoffeePlace, CoffeePlaceAdmin)
+admin.site.register(CoffeePlaceCategory, CoffeePlaceCategoryAdmin)
+admin.site.register(CoffeePlaceGeoPoint)
+admin.site.register(CoffeeRoaster, CoffeeRoasterAdmin)

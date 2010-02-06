@@ -12,15 +12,10 @@
             {% if coffee_log.coffee_drink_size %}{{ coffee_log.coffee_drink_size }} {% endif %}
             {{ coffee_log.coffee_drink }}
             {% if coffee_log.coffee_bean %}made with {{ coffee_log.coffee_bean }} coffee beans {% endif %}
-            {% if coffee_log.coffee_place %}from 
-            {% if coffee_log.coffee_place.url %}
-            <a href="{{ coffee_log.coffee_place.url }}" target="_blank">{{ coffee_log.coffee_place }}</a>
-            {% else %}
-            {{ coffee_log.coffee_place }}
+            {% if coffee_log.coffee_place %}from <a href="{{ coffee_log.coffee_place.get_absolute_url }}">{{ coffee_log.coffee_place }}</a>
             {% endif %}
             </div>
             <div class="cf"></div>
-            {% endif %}
         </li>
         {% endfor %}
     </ol>

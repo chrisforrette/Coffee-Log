@@ -41,3 +41,15 @@ def index(request):
         place_pcts.append(int(round((float(count)/float(total)) * 100))) 
     
     return render_to_response('coffee/index.html', locals())
+
+# Coffee place page
+
+def place(request, slug):
+    coffee_place = get_object_or_404(CoffeePlace, slug=slug)
+    
+    from coffee_log.settings_local import get_geo_point
+    
+    address = coffee_place.address + ' ' + coffee_place.city + ', ' + coffee_place.state + ' ' + coffee_place.zip
+    geo_point = get_geo_point(address)
+    geo_point = geo_point[1]
+    return render_to_response('coffee/place.html', locals())
