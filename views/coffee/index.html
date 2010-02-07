@@ -2,25 +2,10 @@
 
 {% block master_content %}
     <h2>Coffee Consumption Timeline</h2>
-    <ol class="coffee-logs">
-        {% for coffee_log in coffee_logs %}
-        <li>
-            <div class="date">
-                {{ coffee_log.consumption|date:"F j, Y g:ia" }}
-            </div>
-            <div class="info">
-            {% if coffee_log.coffee_drink_size %}{{ coffee_log.coffee_drink_size }} {% endif %}
-            {{ coffee_log.coffee_drink }}
-            {% if coffee_log.coffee_bean %}made with {{ coffee_log.coffee_bean }} coffee beans {% endif %}
-            {% if coffee_log.coffee_place %}from <a href="{{ coffee_log.coffee_place.get_absolute_url }}">{{ coffee_log.coffee_place }}</a>
-            {% endif %}
-            </div>
-            <div class="cf"></div>
-        </li>
-        {% endfor %}
-    </ol>
+    <hr class="dk" />
+    {% include "coffee/list_coffee_log.html" %}
     <h2>Charts</h2>
-    <hr class="lt" />
+    <hr />
     <div class="charts">
         <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ drink_pcts|join:"," }}&amp;chs=350x200&amp;chl={{ drink_names|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
         <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ place_pcts|join:"," }}&amp;chs=650x200&amp;chl={{ place_names|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />

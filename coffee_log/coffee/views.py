@@ -52,4 +52,9 @@ def place(request, slug):
     address = coffee_place.address + ' ' + coffee_place.city + ', ' + coffee_place.state + ' ' + coffee_place.zip
     geo_point = get_geo_point(address)
     geo_point = geo_point[1]
+    
+    # Coffee logs
+    
+    coffee_logs = CoffeeLog.objects.filter(coffee_place=coffee_place)[:10]
+    
     return render_to_response('coffee/place.html', locals())

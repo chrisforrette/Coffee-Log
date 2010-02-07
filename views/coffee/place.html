@@ -10,7 +10,6 @@
         $(window).load(function() {
             var oMap;
             var oLatLng = new google.maps.LatLng({{ geo_point.1 }}, {{ geo_point.0 }});
-            console.log(oLatLng);
             var oOpt = {
                 'zoom': 14,
                 'center': oLatLng,
@@ -23,25 +22,54 @@
                 'position': oLatLng
             });
             
-            console.log(oMap);
         });
         
     </script>
 {% endblock %}
 
 {% block master_content %}
+    <a href="/places/" class="pg-head-link">See All Coffee Places</a>
     <h2>{{ coffee_place.name }}</h2>
     <hr />
+    <div class="cf"></div>
     <div class="content-inset">
-        <div id="coffee-place-map">
-
+        <div class="col-l">
+            <div id="coffee-place-map"></div>
         </div>
-        <p>
-            {{ coffee_place.address }}<br />
-            {{ coffee_place.city }}, {{ coffee_place.state }} {{ coffee_place.zip }}
-        </p>
-        <p>
-            <a href="{{ coffee_place.url }}" target="_blank">{{ coffee_place.url }}</a>
-        </p>
+        <div class="col-r">
+            <div class="col-info">
+                <h4>Address:</h4>
+                <p>
+                    {{ coffee_place.address }}<br />
+                    {{ coffee_place.city }}, {{ coffee_place.state }} {{ coffee_place.zip }}
+                </p>
+                {% if coffee_place.url %}
+                <p>
+                    <a href="{{ coffee_place.url }}" target="_blank">{{ coffee_place.url }}</a>
+                </p>
+                {% endif %}
+            </div>
+            
+            {% if coffee_place.roaster %}
+            <div class="col-info-box">
+                <h4>Related Roaster:</h4>
+                <p>
+                    <a href="{{ coffee_place.roaster.get_absolute_url }}" target="_blank">{{ coffee_place.roaster.name }}</a>
+                    {% if coffee_place.roaster.url %}
+                    <br /><a href="{{ coffee_place.roaster.url }}" target="_blank">{{ coffee_place.roaster.url }}</a>
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="cf"></div>
     </div>
+    
+    {% if coffee_logs %}        
+    <h3>Recent Visits</h3>
+    <hr class="dk" />
+    {% include "coffee/list_coffee_log.html" %}
+    <hr />
+    {% endif %}
+    
 {% endblock %}

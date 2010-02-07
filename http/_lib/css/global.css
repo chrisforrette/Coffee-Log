@@ -29,16 +29,22 @@ h1 a {
     background: url('/_img/text/txt_coffee_log.gif') 0 0 no-repeat;
 }
 
-h2 {
-    border-bottom: 1px solid #d9c298;
+#content h2,
+#content h3 {
     font-size: 14px;
     line-height: 1em;
     padding: 15px 25px;
 }
 
+#content h3 {
+    font-size: 12px;
+}
+
 hr {
     border: none;
-    border-top: 1px solid #f2d9aa;
+    border-bottom: 1px solid #f2d9aa;
+    border-top: 1px solid #d9c298;
+    clear: both;
     height: 0;
     margin: 0;
 }
@@ -55,6 +61,10 @@ GLOBAL
 
 .alt {
     display: none;
+}
+
+hr.dk {
+    border-bottom: none;
 }
 
 hr.lt {
@@ -95,6 +105,57 @@ LAYOUT
 
 .content-inset {
     padding: 25px;
+}
+
+.col-l,
+.col-r {
+    float: left;
+    width: 500px;
+}
+
+.col-l {
+    margin-right: 40px;
+}
+
+#footer {
+    color: #4d2500;
+    padding: 10px 0 20px;
+}
+
+.col-info + .col-info,
+.col-info + .col-info-box,
+.col-info-box + .col-info {
+    margin-top: 20px;
+}
+
+.col-info-box {
+    background-color: #f2d9aa;
+    -moz-border-radius: 4px;
+    padding: 10px;
+}
+
+/*
+----------------------------------------------------
+PAGES
+----------------------------------------------------
+*/
+
+#content h2 {
+    float: left;
+}
+
+#content a.pg-head-link {
+    -moz-border-radius: 12px;
+    background: #ccb78f url('/_img/icons/icn_arrow_go.gif') 94% 50% no-repeat;
+    color: #99896b;
+    font-size: 11px;
+    margin: 7px 12px;
+    float: right;
+    padding: 4px 24px 4px 12px;
+}
+
+#content a.pg-head-link:hover {
+    color: #665b47;
 }
 
 /*
@@ -147,5 +208,5 @@ COFFEE PLACES
     border: 5px solid #ccb78f;
     height: 300px;
     margin-bottom: 25px;
-    width: 1040px;
+    width: 500px;
 }
