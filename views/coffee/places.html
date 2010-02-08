@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block master_page_title %}{{ block.super }} | Places{% endblock %}
+
+{% block master_content %}
+    <form id="form-coffee-place-proximity" class="form-horizontal pg-head-form-search" action="/places/" method="get" accept-charset="utf-8">
+        <div class="field field-text">
+            <label for="q">Near</label>
+            <div class="input"><input type="text" name="q" value="" /></div>
+        </div>
+        <div class="field field-submit"><input type="submit" name="submit" value="Go" /></div>
+        <div class="cf"></div>
+    </form>
+    <h2>Coffee Places</h2>
+    <hr />
+{% endblock %}

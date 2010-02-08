@@ -64,6 +64,20 @@ class CoffeeLogAdmin(admin.ModelAdmin):
     )
     ordering = ['-consumption']
     list_filter = list_display
+    
+    def get_form(self, request, obj=None, **kwargs):
+        self.current_user = request.user
+        return super(CoffeeLogAdmin, self).get_form(request, obj, **kwargs)
+    
+    def formfield_for_dbfield(self, field, **kwargs):
+        from django import forms
+        from django.contrib.auth.models import User
+        
+        if field.name == 'user':
+            qs = User.objects.all()
+            return forms.ModelChoiceField(queryset=qs, initial=self.current_user.id)
+        
+        return super(CoffeeLogAdmin, self).formfield_for_dbfield(field, **kwargs)
 
 admin.site.register(CoffeeBean, CoffeeBeanAdmin)
 admin.site.register(CoffeeDrink, CoffeeDrinkAdmin)

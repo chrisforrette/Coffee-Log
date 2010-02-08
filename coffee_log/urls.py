@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     
     # Coffee place
     
+    (r'^places/?$', 'coffee_log.coffee.views.places'),
     (r'^place/([-_\w]+)/?$', 'coffee_log.coffee.views.place'),
 )

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.contrib.gis.db import models as geo_models
 from coffee_log.settings_local import STATUS_OPTIONS
 
@@ -10,7 +11,7 @@ class CoffeeRoaster(models.Model):
     url = models.URLField(max_length=255, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
         return self.name
@@ -28,7 +29,7 @@ class CoffeeBean(models.Model):
     type = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
         return self.name
@@ -44,7 +45,7 @@ class CoffeeDrink(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
         return self.name
@@ -63,7 +64,7 @@ class CoffeeDrinkSize(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
 
     def __unicode__(self):
         return self.name
@@ -79,7 +80,7 @@ class CoffeePlaceCategory(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
 
     def __unicode__(self):
         return self.name
@@ -101,7 +102,7 @@ class CoffeePlace(models.Model):
     zip = models.CharField(max_length=15)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
         return self.name
@@ -128,15 +129,17 @@ class CoffeePlaceGeoPoint(models.Model):
 # Coffee Logs
 
 class CoffeeLog(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True)
     coffee_drink = models.ForeignKey(CoffeeDrink)
     coffee_bean = models.ForeignKey(CoffeeBean, blank=True, null=True)
     coffee_place = models.ForeignKey(CoffeePlace, blank=True, null=True)
     coffee_drink_size = models.ForeignKey(CoffeeDrinkSize, blank=True, null=True)
+    is_homemade = models.BooleanField(default=False)
     notes = models.CharField(max_length=255, blank=True, null=True)
     consumption = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
         display = ''
@@ -150,3 +153,8 @@ class CoffeeLog(models.Model):
     class Meta:
         ordering = ['-consumption']
         verbose_name_plural = 'Coffee Logs'
+    
+    def clean_user(self):
+        print 'CLEAN USER'
+        print self.cleaned_data['user']
+        return 

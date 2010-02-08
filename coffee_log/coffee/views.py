@@ -4,6 +4,7 @@ from django.db.models import Count
 from coffee_log.coffee.models import CoffeeLog, CoffeeDrink, CoffeePlace
 
 def index(request):
+        
     coffee_logs = CoffeeLog.objects.all()
     coffee_drinks = CoffeeDrink.objects.all()
     
@@ -41,6 +42,11 @@ def index(request):
         place_pcts.append(int(round((float(count)/float(total)) * 100))) 
     
     return render_to_response('coffee/index.html', locals())
+
+# Coffee places list
+
+def places(request):
+    return render_to_response('coffee/places.html', locals())
 
 # Coffee place page
 
