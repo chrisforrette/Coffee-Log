@@ -1,26 +1,26 @@
 import math
 from django.shortcuts import render_to_response, get_object_or_404
-from django.db.models import Count
+from django.db.models import Aggregate, Count
 from coffee_log.coffee.models import CoffeeLog, CoffeeDrink, CoffeePlace
+
+# Home page
 
 def index(request):
     
-    # print dir(request.user)
-    # print request.user.get_all_permissions()
-    
-    coffee_logs = CoffeeLog.objects.all()
+    coffee_logs = CoffeeLog.objects.all()[:20]
     
     # Get coffee drinks and counts
     
-    drinks = CoffeeDrink.objects.all().annotate(log_count=Count('coffeelog'))
+    drinks = CoffeeDrink.objects.all().annotate(Count('coffeelog'))
     drink_names = []
     drink_counts = []
     drink_pcts = []
     
     for drink in drinks:
-        if drink.log_count > 0:
+        print drink.coffeelog__count
+        if drink.coffeelog__count > 0:
             drink_names.append(drink.name)
-            drink_counts.append(drink.log_count)
+            drink_counts.append(drink.coffeelog__count)
     
     total = sum(drink_counts)
     
@@ -31,15 +31,15 @@ def index(request):
     
     # Count place visits
     
-    places = CoffeePlace.objects.all().annotate(log_count=Count('coffeelog'))
+    places = CoffeePlace.objects.all().annotate(Count('coffeelog'))
     place_names = []
     place_counts = []
     place_pcts = []
     
     for place in places:
-        if place.log_count > 0:
+        if place.coffeelog__count > 0:
             place_names.append(place.name)
-            place_counts.append(place.log_count)
+            place_counts.append(place.coffeelog__count)
     
     total = sum(place_counts)
     

@@ -153,8 +153,3 @@ class CoffeeLog(models.Model):
     class Meta:
         ordering = ['-consumption']
         verbose_name_plural = 'Coffee Logs'
-    
-    def clean_user(self):
-        print 'CLEAN USER'
-        print self.cleaned_data['user']
-        return 

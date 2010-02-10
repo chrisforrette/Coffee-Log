@@ -12,6 +12,7 @@
     	{% endblock %}
     	{% block master_js %}
     	<script type="text/javascript" charset="utf-8" src="/_lib/js/jquery-1.4.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="/_lib/js/global.js"></script>
     	{% endblock %}
     </head>
 
@@ -19,6 +20,19 @@
         <div id="container">
             <div id="header">
                 <h1><a href="/"><span class="alt">Coffee Log</span></a></h1>
+                <div class="box-user">
+                {% if request.user.is_authenticated %}
+                    <div class="msg">Welcome <a href="{{ request.user.get_absolute_url }}">{{ request.user.username }}</a>!</div>
+                    <ul>
+                        <li><a href="/coffee-log/add/" class="btn-add btn-add-coffee-log"><span class="alt">Add Coffee Log</span></a></li>
+                        <li class="last"><a href="/users/logout/" class="link-logout">Logout</a></li>
+                    </ul>
+                    <div class="cf"></div>
+                {% else %}
+                    <div class="msg">Welcome! <a href="/users/register/">Click here</a> to login/register</div>
+                {% endif %}
+                </div>
+                <div class="cf"></div>
             </div>
             <div id="content">
                 {% block master_content %}{% endblock %}

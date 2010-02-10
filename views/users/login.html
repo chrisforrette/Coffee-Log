@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block master_content %}
+    <h2>Login</h2>
+    <hr />
+    <form action="/users/login/" method="post" accept-charset="utf-8">
+        <label>Username</label>
+        {{ form.username }}
+        <label>Password</label>
+        {{ form.password }}
+        <input type="submit" value="Continue &rarr;" />
+    </form>
+{% endblock %}

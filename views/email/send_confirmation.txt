@@ -1,0 +1,9 @@
+Hello {{ user.username}},
+
+Please use the following link to confirm your registration:
+
+{{ confirmation_url }}
+
+If you can't click it, just copy and paste it into your browser. See you sooN!
+
+- Coffee Log

@@ -1,0 +1,75 @@
+{% extends "master.html" %}
+
+{% block master_content %}
+    <h2>Register</h2>
+    <hr />
+    <div class="content-inset">
+        <form action="/users/register/" method="post" accept-charset="utf-8" class="form-full-page">
+            <ol>
+                <li class="field field-text">
+                    {{ form.username.label_tag }}
+                    <div class="input">
+                        {{ form.username }}
+                    </div>
+                    {% if form.username.errors %}
+                    <div class="errors">
+                        {{ form.username.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.username.help_text %}
+                    <div class="hint">{{ form.username.help_text }}</div>
+                    {% endif %}
+                    <div class="cf"></div>
+                </li>
+                <li class="field field-text">
+                    {{ form.email.label_tag }}
+                    <div class="input">
+                        {{ form.email }}
+                    </div>
+                    {% if form.email.errors %}
+                    <div class="errors">
+                        {{ form.email.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.email.help_text %}
+                    <div class="hint">{{ form.email.help_text }}</div>
+                    {% endif %}
+                    <div class="cf"></div>
+                </li>
+                <li class="field field-password">
+                    {{ form.password1.label_tag }}
+                    <div class="input">
+                        {{ form.password1 }}
+                    </div>
+                    {% if form.password1.errors %}
+                    <div class="errors">
+                        {{ form.password1.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.password1.help_text %}
+                    <div class="hint">{{ form.password1.help_text }}</div>
+                    {% endif %}
+                    <div class="cf"></div>
+                </li>
+                <li class="field field-password">
+                    {{ form.password2.label_tag }}
+                    <div class="input">
+                        {{ form.password2 }}
+                    </div>
+                    {% if form.password2.errors %}
+                    <div class="errors">
+                        {{ form.password2.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.password2.help_text %}
+                    <div class="hint">{{ form.password2.help_text }}</div>
+                    {% endif %}
+                </li>
+                <li class="field field-submit">
+                    <div class="input"><input type="submit" name="submit" value="Register" /></div>
+                </li>
+            </ol>
+            {# {{ form.as_ul }} #}
+        </form>
+    </div>
+{% endblock %}

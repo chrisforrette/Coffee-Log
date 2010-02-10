@@ -55,6 +55,12 @@ hr {
     margin: 0;
 }
 
+.vr {
+    border-left: 1px solid #f2d9aa;
+    border-right: 1px solid #d9c298;
+    width: 0;
+}
+
 a {
     text-decoration: none;
 }
@@ -92,7 +98,8 @@ LAYOUT
     padding: 40px 0 30px;
 }
 
-#content {
+#content,
+.box-user {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     background-color: #e6cea1;
@@ -100,12 +107,14 @@ LAYOUT
     padding: 5px 0;
 }
 
-#content a {
+#content a,
+.box-user a {
     color: #994a00;
     font-weight: bold;
 }
 
-#content a:hover {
+#content a:hover,
+.box-user a:hover {
     color: #b35600;
 }
 
@@ -142,16 +151,110 @@ LAYOUT
 
 /*
 ----------------------------------------------------
+BUTTONS
+----------------------------------------------------
+*/
+
+.btn-add {
+    background: url('/_img/buttons/btn_add.gif') 0 0 no-repeat;
+    height: 16px;
+    width: 16px;
+}
+
+.btn-add:hover {
+    background-position: 0 -16px;
+}
+
+/*
+----------------------------------------------------
+HEADER
+----------------------------------------------------
+*/
+
+#header h1 {
+    float: left;
+}
+
+#header .box-user {
+    float: right;
+}
+
+/* USER BOX */
+
+.box-user {
+    -moz-border-radius: 4px;
+    background-color: #e6cea1;
+    font-weight: bold;
+    padding: 0;
+}
+
+.box-user .msg,
+.box-user ul {
+    float: left;
+}
+
+.box-user .msg,
+.box-user li a {
+    padding: 5px 10px;
+} 
+
+.box-user ul {
+    border-left: 1px solid #d9c298;
+    padding-right: 5px;
+}
+
+.box-user li {
+    border-left: 1px solid #f2d9aa;
+    border-right: 1px solid #d9c298;
+    float: left;
+}
+
+.box-user li.last {
+    border-right: none;
+}
+
+.box-user li a {
+    display: block;
+}
+
+.box-user li a.btn-add {
+    margin: 5px;
+    padding: 0;
+}
+
+/*
+----------------------------------------------------
 FORMS
 ----------------------------------------------------
 */
 
+form li {
+    padding: 0 0 10px 0;
+}
+
 label {
-    color: ;
+    display: block;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.errors,
+.hint {
+    padding: 5px;    
+}
+
+.hint {
+    color: #99896b;
+    font-size: 11px;
+}
+
+.errors {
+    color: #c00;
     font-weight: bold;
 }
 
 .field-text input,
+.field-password input,
 .field-textarea textarea {
     border-color: #ccb78f #ffe4b2 #ffe4b2 #ccb78f;
     border-style: solid;
@@ -165,6 +268,28 @@ label {
 .form-horizontal .field,
 .form-horizontal .input {
     float: left;
+}
+
+.form-full-page label {
+    float: left;
+    margin-right: 20px;
+    width: 150px;
+}
+
+.form-full-page .input,
+.form-full-page .field-text input,
+.form-full-page .field-password input,
+.form-full-page .input select,
+.form-full-page .input textarea,
+.form-full-page .hint,
+.form-full-page .errors {
+    width: 300px;
+}
+
+.form-full-page .input,
+.form-full-page .hint,
+.form-full-page .errors {
+    margin-left: 170px;
 }
 
 /*

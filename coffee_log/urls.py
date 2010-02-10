@@ -17,4 +17,14 @@ urlpatterns = patterns('',
     
     (r'^places/?$', 'coffee_log.coffee.views.places'),
     (r'^place/([-_\w]+)/?$', 'coffee_log.coffee.views.place'),
+    
+    # Users
+    
+    (r'^users/login/?$', 'django.contrib.auth.views.login', {'template_name': 'users/login.html'}),
+    (r'^users/logout/?$', 'coffee_log.users.views.logout_view'),
+    (r'^users/register/?$', 'coffee_log.users.views.register'),
+    (r'^users/send-confirmation/(\d+)/?$', 'coffee_log.users.views.send_confirmation'),
+    (r'^users/confirm/([a-z0-9]+)/?$', 'coffee_log.users.views.confirm'),
+    
+    
 )
