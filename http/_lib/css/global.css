@@ -37,7 +37,7 @@ h1 a {
 
 #content h2,
 #content h3 {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1em;
     padding: 15px 25px;
 }
@@ -122,6 +122,11 @@ LAYOUT
     padding: 25px;
 }
 
+#content .content-inset h3 {
+    padding-left: 0;
+    padding-right: 0s;
+}
+
 .col-l,
 .col-r {
     float: left;
@@ -131,6 +136,24 @@ LAYOUT
 .col-l {
     margin-right: 40px;
 }
+
+.col-3-l,
+.col-3-c,
+.col-3-r {
+    float: left;
+    width: 332px;
+}
+
+#content .col-3-l h3,
+#content .col-3-c h3,
+#content .col-3-r h3 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-3-l { padding: 0 12px 0 25px; }
+.col-3-c { padding: 0 12px; }
+.col-3-r { padding: 0 25px 0 12px; }
 
 #footer {
     color: #4d2500;
@@ -302,7 +325,7 @@ PAGES
     float: left;
 }
 
-#content a.pg-head-link {
+#content a.btn-go-hd {
     -moz-border-radius: 12px;
     background: #ccb78f url('/_img/icons/icn_arrow_go.gif') 94% 50% no-repeat;
     color: #99896b;
@@ -312,7 +335,7 @@ PAGES
     padding: 4px 24px 4px 12px;
 }
 
-#content a.pg-head-link:hover {
+#content a.btn-go-hd:hover {
     color: #665b47;
 }
 

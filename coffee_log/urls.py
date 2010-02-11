@@ -11,12 +11,24 @@ urlpatterns = patterns('',
     
     (r'^/?(?P<path>(_lib|_img)/.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(os.path.dirname(__file__)), 'http').replace('\\', '/')}),
     
+    # Home page
+    
     (r'^/?$', 'coffee_log.coffee.views.index'),
     
-    # Coffee place
+    # Coffee Places
     
     (r'^places/?$', 'coffee_log.coffee.views.places'),
-    (r'^place/([-_\w]+)/?$', 'coffee_log.coffee.views.place'),
+    (r'^places/([-_\w]+)/?$', 'coffee_log.coffee.views.place'),
+    
+    # Coffee Roasters
+    
+    (r'^roasters/?$', 'coffee_log.coffee.views.roasters'),
+    (r'^roasters/([-_\w]+)/?$', 'coffee_log.coffee.views.roaster'),
+    
+    # Coffee beans
+    
+    (r'^beans/?$', 'coffee_log.coffee.views.beans'),
+    (r'^beans/([-_\w]+)/?$', 'coffee_log.coffee.views.bean'),
     
     # Users
     

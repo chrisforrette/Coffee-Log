@@ -4,6 +4,6 @@ Please use the following link to confirm your registration:
 
 {{ confirmation_url }}
 
-If you can't click it, just copy and paste it into your browser. See you sooN!
+If you can't click it, just copy and paste it into your browser. This confirmation URL will only be good for the remainder of the week (through the end of Sunday) so give 'er a click and we'll see you soon!
 
 - Coffee Log

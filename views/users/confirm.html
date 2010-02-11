@@ -3,4 +3,17 @@
 {% block master_content %}
     <h2>Confirm</h2>
     <hr />
+    <div class="content-inset">
+        {% if activated %}
+        <h3>Hooray!</h3>
+        <p>
+            Your account has been activated! <a href="/users/login/">Click here</a> to log in and tell the world about all the great coffee you're drinking!
+        </p>
+        {% else %}
+        <h3>Error</h3>
+        <p>
+            You've entered an invalid confirmation URL, please make sure the URL is correct and try again.
+        </p>
+        {% endif %}
+    </div>    
 {% endblock %}

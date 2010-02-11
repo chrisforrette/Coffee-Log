@@ -1,10 +1,4 @@
-STATUS_OPTIONS = (
-    (0, 'Deleted'),
-    (1, 'Inactive'),
-    (2, 'Active'),
-)
-
-GOOGLE_MAPS_API_KEY = "ABQIAAAAACr9e7mqlFH26wAD4fWpmRTpH3CbXHjuCVmaTc5MkkU4wO1RRhT98Ib4uYFiGc5rNYm4TzWwnl2yMQ"
+from settings import GOOGLE_MAPS_API_KEY
 
 def get_geo_point(address):
     

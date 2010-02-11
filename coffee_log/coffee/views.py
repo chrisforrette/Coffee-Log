@@ -1,7 +1,7 @@
 import math
 from django.shortcuts import render_to_response, get_object_or_404
-from django.db.models import Aggregate, Count
-from coffee_log.coffee.models import CoffeeLog, CoffeeDrink, CoffeePlace
+from django.db.models import Count
+from coffee_log.coffee.models import *
 
 # Home page
 
@@ -58,7 +58,7 @@ def places(request):
 def place(request, slug):
     coffee_place = get_object_or_404(CoffeePlace, slug=slug)
     
-    from coffee_log.settings_local import get_geo_point
+    from coffee_log.google_maps import get_geo_point
     
     address = coffee_place.address + ' ' + coffee_place.city + ', ' + coffee_place.state + ' ' + coffee_place.zip
     geo_point = get_geo_point(address)
@@ -69,3 +69,40 @@ def place(request, slug):
     coffee_logs = CoffeeLog.objects.filter(coffee_place=coffee_place)[:10]
     
     return render_to_response('coffee/place.html', locals())
+
+# Coffee roasters list
+
+def roasters(request):
+    return render_to_response('coffee/roasters.html', locals())
+
+# Coffee roaster page
+
+def roaster(request, slug):
+    coffee_roaster = get_object_or_404(CoffeeRoaster, slug=slug)
+
+    # Coffee beans
+
+    coffee_beans = CoffeeBean.objects.filter(roaster=coffee_roaster)
+
+    # Coffee Places
+    
+    coffee_places = CoffeePlace.objects.filter(roaster=coffee_roaster)
+
+    return render_to_response('coffee/roaster.html', locals())
+
+# Coffee beans list
+
+def beans(request):
+    coffee_beans = CoffeeBean.objects.filter(status=2)
+    return render_to_response('coffee/beans.html', locals())
+
+# Coffee bean page
+
+def bean(request, slug):
+    coffee_bean = get_object_or_404(CoffeeBean, slug=slug)
+
+    # Coffee logs
+
+    coffee_logs = CoffeeLog.objects.filter(coffee_bean=coffee_bean)[:10]
+
+    return render_to_response('coffee/bean.html', locals())

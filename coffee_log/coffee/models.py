@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models as geo_models
-from coffee_log.settings_local import STATUS_OPTIONS
+from coffee_log.settings_site import STATUS_OPTIONS
 
 # Coffee Roasters
 
@@ -19,6 +19,10 @@ class CoffeeRoaster(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name_plural = 'Coffee Roasters'
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('coffee_log.coffee.views.roaster', [str(self.slug)])
 
 # Coffee Beans
 
@@ -37,6 +41,10 @@ class CoffeeBean(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name_plural = 'Coffee Beans'
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('coffee_log.coffee.views.bean', [str(self.slug)])
 
 # Coffee Drinks
 
@@ -118,7 +126,7 @@ class CoffeePlace(models.Model):
 # Coffee Place Geo Point
 
 class CoffeePlaceGeoPoint(models.Model):
-    coffee_place = models.ForeignKey(CoffeePlace, unique=True)
+    coffee_place = models.OneToOneField(CoffeePlace)
     geo_point = geo_models.PointField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -139,7 +147,7 @@ class CoffeeLog(models.Model):
     consumption = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
     
     def __unicode__(self):
         display = ''

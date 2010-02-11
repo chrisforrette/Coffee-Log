@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block master_page_title %}{{ block.super }} | Coffee Beans | {{ coffee_bean.name }}{% endblock %}
+
+{% block master_content %}
+    <a href="/beans/" class="btn-go-hd">See All Coffee Beans</a>
+    <h2>{{ coffee_bean.name }} (<a href="{{ coffee_bean.roaster.get_absolute_url }}">{{ coffee_bean.roaster.name }}</a>)</h2>
+    <hr />
+    <div class="cf"></div>
+    <div class="content-inset">
+        <h3>Coming Soon</h3>
+    </div>
+    
+    {% if coffee_logs %}        
+    <h3>Recent Brews</h3>
+    <hr class="dk" />
+    {% include "coffee/list_coffee_log.html" %}
+    <hr />
+    {% endif %}
+    
+{% endblock %}

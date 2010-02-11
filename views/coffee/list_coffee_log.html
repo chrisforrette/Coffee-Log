@@ -5,11 +5,12 @@
             {{ coffee_log.consumption|date:"F j, Y g:ia" }}
         </div>
         <div class="info">
-        {% if coffee_log.coffee_drink_size %}{{ coffee_log.coffee_drink_size }} {% endif %}
-        {{ coffee_log.coffee_drink }}
-        {% if coffee_log.coffee_bean %}made with {{ coffee_log.coffee_bean }} coffee beans {% endif %}
-        {% if coffee_log.coffee_place %}from <a href="{{ coffee_log.coffee_place.get_absolute_url }}">{{ coffee_log.coffee_place }}</a>
-        {% endif %}
+            <a href="{{ coffee_log.user.get_absolute_url }}">{{ coffee_log.user.username }}</a> had a {% if coffee_log.is_homemade %}homemade {% endif %}
+            {% if coffee_log.coffee_drink_size %}{{ coffee_log.coffee_drink_size }} {% endif %}
+            {{ coffee_log.coffee_drink }}
+            {% if coffee_log.coffee_bean %}made with <a href="{{ coffee_log.coffee_bean.get_absolute_url }}">{{ coffee_log.coffee_bean }}</a> coffee beans {% endif %}
+            {% if coffee_log.coffee_place %}from <a href="{{ coffee_log.coffee_place.get_absolute_url }}">{{ coffee_log.coffee_place }}</a>
+            {% endif %}
         </div>
         <div class="cf"></div>
     </li>
