@@ -56,11 +56,13 @@ class CoffeePlaceCategoryAdmin(admin.ModelAdmin):
 
 class CoffeeLogAdmin(admin.ModelAdmin):
     list_display = (
+        'consumption',
+        'user',
         'coffee_drink', 
         'coffee_drink_size',
         'coffee_place',
+        'is_homemade',
         'coffee_bean',
-        'consumption',
     )
     ordering = ['-consumption']
     list_filter = list_display

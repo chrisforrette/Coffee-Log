@@ -3,11 +3,43 @@
 {% block master_content %}
     <h2>Login</h2>
     <hr />
-    <form action="/users/login/" method="post" accept-charset="utf-8">
-        <label>Username</label>
-        {{ form.username }}
-        <label>Password</label>
-        {{ form.password }}
-        <input type="submit" value="Continue &rarr;" />
-    </form>
+    <div class="content-inset">
+        <form action="/users/login/" method="post" accept-charset="utf-8" class="form-full-page">
+            <ol>
+                <li class="field field-text">
+                    {{ form.username.label_tag }}
+                    <div class="input">
+                        {{ form.username }}
+                    </div>
+                    {% if form.username.errors %}
+                    <div class="errors">
+                        {{ form.username.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.username.help_text %}
+                    <div class="hint">{{ form.username.help_text }}</div>
+                    {% endif %}
+                    <div class="cf"></div>
+                </li>
+                <li class="field field-password">
+                    {{ form.password.label_tag }}
+                    <div class="input">
+                        {{ form.password }}
+                    </div>
+                    {% if form.password.errors %}
+                    <div class="errors">
+                        {{ form.password.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.password.help_text %}
+                    <div class="hint">{{ form.password.help_text }}</div>
+                    {% endif %}
+                    <div class="cf"></div>
+                </li>
+                <li class="field field-submit">
+                    <div class="input"><input type="submit" name="submit" value="Login" /></div>
+                </li>
+            </ol>
+        </form>
+    </div>
 {% endblock %}

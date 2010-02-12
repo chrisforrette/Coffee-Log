@@ -119,6 +119,20 @@ class CoffeePlace(models.Model):
     def get_absolute_url(self):
         return ('coffee_log.coffee.views.place', [str(self.slug)])
     
+    def get_full_address(self):
+        full_address = ''
+        if self.address:
+            full_address = self.address
+        if self.city:
+            full_address += ', ' + self.city
+        if self.state:
+            full_address += ', ' + self.state
+        if self.zip:
+            full_address += ' ' + str(self.zip)
+        return full_address
+    
+    full_address = property(get_full_address)
+    
     class Meta:
         ordering = ['name']
         verbose_name_plural = 'Coffee Places'
@@ -130,9 +144,33 @@ class CoffeePlaceGeoPoint(models.Model):
     geo_point = geo_models.PointField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    
+    objects = geo_models.GeoManager()
 
     class Meta:
         verbose_name_plural = 'Coffee Place Geo Points'
+
+# Post save for CoffeePlace to create or update geo point
+
+def create_coffee_place_geo_point(sender, instance, signal, *args, **kwargs):
+    if not instance.address == '':
+        from coffee_log.google_maps import get_geo_point
+        geo_point = get_geo_point(instance.address)
+        if geo_point:
+            coffee_place_geo = ''
+            try:
+                coffee_place_geo = CoffeePlaceGeoPoint.objects.get(coffee_place=instance)
+            except:
+                pass
+            if coffee_place_geo:
+                coffee_place_geo.geo_point = geo_point[1]
+            else:
+                coffee_place_geo = CoffeePlaceGeoPoint(coffee_place=instance, geo_point=geo_point[1])
+            coffee_place_geo.save()
+
+# Register CoffeePlace post save signal
+
+models.signals.post_save.connect(create_coffee_place_geo_point, sender=CoffeePlace)
 
 # Coffee Logs
 

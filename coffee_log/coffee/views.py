@@ -7,7 +7,7 @@ from coffee_log.coffee.models import *
 
 def index(request):
     
-    coffee_logs = CoffeeLog.objects.all()[:20]
+    coffee_logs = CoffeeLog.objects.all()[:10]
     
     # Get coffee drinks and counts
     
@@ -17,7 +17,6 @@ def index(request):
     drink_pcts = []
     
     for drink in drinks:
-        print drink.coffeelog__count
         if drink.coffeelog__count > 0:
             drink_names.append(drink.name)
             drink_counts.append(drink.coffeelog__count)
@@ -57,12 +56,6 @@ def places(request):
 
 def place(request, slug):
     coffee_place = get_object_or_404(CoffeePlace, slug=slug)
-    
-    from coffee_log.google_maps import get_geo_point
-    
-    address = coffee_place.address + ' ' + coffee_place.city + ', ' + coffee_place.state + ' ' + coffee_place.zip
-    geo_point = get_geo_point(address)
-    geo_point = geo_point[1]
     
     # Coffee logs
     
