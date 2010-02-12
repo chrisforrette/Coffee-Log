@@ -50,6 +50,7 @@ def index(request):
 # Coffee places list
 
 def places(request):
+    coffee_places = CoffeePlace.objects.filter(status=2)
     return render_to_response('coffee/places.html', locals())
 
 # Coffee place page
@@ -66,6 +67,7 @@ def place(request, slug):
 # Coffee roasters list
 
 def roasters(request):
+    coffee_roasters = CoffeeRoaster.objects.filter(status=2)
     return render_to_response('coffee/roasters.html', locals())
 
 # Coffee roaster page

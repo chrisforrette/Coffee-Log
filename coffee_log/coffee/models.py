@@ -141,6 +141,7 @@ class CoffeePlace(models.Model):
 
 class CoffeePlaceGeoPoint(models.Model):
     coffee_place = models.OneToOneField(CoffeePlace)
+    geo_address = models.CharField(max_length=255)
     geo_point = geo_models.PointField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -153,20 +154,31 @@ class CoffeePlaceGeoPoint(models.Model):
 # Post save for CoffeePlace to create or update geo point
 
 def create_coffee_place_geo_point(sender, instance, signal, *args, **kwargs):
+    out = ''
     if not instance.address == '':
         from coffee_log.google_maps import get_geo_point
-        geo_point = get_geo_point(instance.address)
+        print 'SEARCHING ADDRESS: ' + instance.full_address
+        geo_point = get_geo_point(instance.full_address)
         if geo_point:
+            out = 'FOUND'
             coffee_place_geo = ''
             try:
                 coffee_place_geo = CoffeePlaceGeoPoint.objects.get(coffee_place=instance)
             except:
                 pass
             if coffee_place_geo:
+                out += ', UPDATING GEO POINT'
+                coffee_place_geo.geo_address = geo_point[0]
                 coffee_place_geo.geo_point = geo_point[1]
             else:
-                coffee_place_geo = CoffeePlaceGeoPoint(coffee_place=instance, geo_point=geo_point[1])
+                out += ', ADDING GEO POINT'
+                coffee_place_geo = CoffeePlaceGeoPoint(coffee_place=instance, geo_address = geo_point[0], geo_point=geo_point[1])
             coffee_place_geo.save()
+        else:
+            out = 'NOT FOUND'
+    else:
+        out = 'ADDRESS EMPTY'
+    print out
 
 # Register CoffeePlace post save signal
 

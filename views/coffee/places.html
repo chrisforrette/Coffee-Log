@@ -13,4 +13,11 @@
     </form>
     <h2>Coffee Places</h2>
     <hr />
+    <div class="content-inset">
+        <ul>
+            {% for coffee_place in coffee_places %}
+            <li><a href="{{ coffee_place.get_absolute_url }}">{{ coffee_place.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
