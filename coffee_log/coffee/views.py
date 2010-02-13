@@ -1,6 +1,7 @@
 import math
 from django.shortcuts import render_to_response, get_object_or_404
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
 from coffee_log.coffee.models import *
 
 # Home page
@@ -46,6 +47,19 @@ def index(request):
         place_pcts.append(int(round((float(count)/float(total)) * 100))) 
     
     return render_to_response('coffee/index.html', locals())
+
+@login_required
+def coffee_log_add(request):
+    
+    from coffee_log.coffee.forms import CoffeeLogAddForm
+    
+    if request.method == 'POST':
+        form = CoffeeLogAddForm(request.POST)
+        
+    else:
+        form = CoffeeLogAddForm()
+    
+    return render_to_response('coffee/coffee_log_add.html', locals())
 
 # Coffee places list
 

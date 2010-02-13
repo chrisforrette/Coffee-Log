@@ -118,13 +118,17 @@ LAYOUT
     color: #b35600;
 }
 
-.content-inset {
-    padding: 25px;
-}
+.content-inset { padding: 25px; }
+.content-inset-hor { padding: 0 25px; }
+.content-inset-vert { padding: 25px 0; }
 
 #content .content-inset h3 {
     padding-left: 0;
-    padding-right: 0s;
+    padding-right: 0;
+}
+
+.content-inset hr {
+    margin: 10px 0;
 }
 
 .col-l,
@@ -141,6 +145,8 @@ LAYOUT
 .col-3-c,
 .col-3-r {
     float: left;
+    padding-bottom: 25px;
+    padding-top: 25px;
     width: 332px;
 }
 
@@ -151,9 +157,20 @@ LAYOUT
     padding-right: 0;
 }
 
-.col-3-l { padding: 0 12px 0 25px; }
-.col-3-c { padding: 0 12px; }
-.col-3-r { padding: 0 25px 0 12px; }
+.col-3-l {
+    padding-left: 25px;
+    padding-right: 13px;
+}
+
+.col-3-c {
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.col-3-r {
+    padding-right: 25px;
+    padding-right: 13px;
+}
 
 #footer {
     color: #4d2500;
@@ -169,6 +186,7 @@ LAYOUT
 .col-info-box {
     background-color: #f2d9aa;
     -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     padding: 10px;
 }
 
@@ -258,7 +276,11 @@ form li {
 label {
     display: block;
     font-weight: bold;
-    padding: 5px 0;
+    padding: 5px;
+}
+
+div.selector select {
+    background-color: #fff;
 }
 
 .errors,
@@ -284,14 +306,33 @@ label {
     border-width: 1px;
     color: #333;
     -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     padding: 3px 6px;
 }
+
+/* CHECKBOX */
+
+.field-checkbox {
+    padding-top: 27px;
+}
+
+.field-checkbox label {
+    padding-top: 1px;
+}
+
+.field-checkbox .input {
+    float: left;
+}
+
+/* HORIZONTAL FORM */
 
 .form-horizontal label,
 .form-horizontal .field,
 .form-horizontal .input {
     float: left;
 }
+
+/* FULL PAGE FORM*/
 
 .form-full-page label {
     float: left;
@@ -315,6 +356,25 @@ label {
     margin-left: 170px;
 }
 
+/* 3-COLUMN FORM */
+
+.form-3-col .field-text input,
+.form-3-col .field-password input,
+.form-3-col .input select,
+.form-3-col .input textarea,
+.form-3-col .hint,
+.form-3-col .errors {
+    width: 300px;
+}
+
+.form-3-col div.selector {
+    margin-bottom: 0;
+}
+
+.form-3-col .field-submit {
+    padding-bottom: 25px;
+}
+
 /*
 ----------------------------------------------------
 PAGES
@@ -326,6 +386,7 @@ PAGES
 }
 
 #content a.btn-go-hd {
+    -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     background: #ccb78f url('/_img/icons/icn_arrow_go.gif') 94% 50% no-repeat;
     color: #99896b;
