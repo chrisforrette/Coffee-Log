@@ -20,10 +20,64 @@
     <div class="cf"></div>
     -->
     
-    <h2>Charts</h2>
     <hr />
-    <div class="charts">
-        <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ drink_pcts|join:"," }}&amp;chs=350x200&amp;chl={{ drink_names|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
-        <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ place_pcts|join:"," }}&amp;chs=650x200&amp;chl={{ place_names|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+    <div class="hd-bar">
+        <h3>Hot Spots</h3>
+        <a href="{% url coffee-places %}" class="btn-go-hd">All Places</a>
+        <div class="cf"></div>
+    </div>
+    <hr />
+    <div class="inset">
+        <div class="col-l">
+            <h4>Most Visited</h4>
+            <ul class="hot">
+                {% for place in places_most_visited %}
+                <li>
+                    <h4><a href="{{ place.get_absolute_url }}">{{ place.name }}</a></h4>
+                    <span class="tidbit">{{ place.coffeelog__count }} visit{{ place.coffeelog__count|pluralize }}</span>
+                    <div class="cf"></div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-r">
+            <h4>New Spots</h4>
+            <ul class="hot">
+                {% for place in places_new %}
+                <li>
+                    <h4><a href="{{ place.get_absolute_url }}">{{ place.name }}</a></h4>
+                    <span class="tidbit">added {{ place.created|timesince }} ago</span>
+                    <div class="cf"></div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="cf"></div>
+    </div>
+    
+    <div class="hd-bar">
+        <h3>Coffee Stats</h3>
+        <!--><a href="{% url coffee-places %}" class="btn-go-hd">All Places</a>-->
+        <div class="cf"></div>
+    </div>
+    <hr />
+    <div class="inset">
+        <div class="chart">
+            <div class="chart-meta">
+                <h4>Coffee Drinks</h4>
+            </div>
+            <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ drink_pcts|join:"," }}&amp;chs=650x200&amp;chl={{ drink_names|safeseq|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+            <div class="cf"></div>
+        </div>
+    </div>
+    <hr />
+    <div class="inset">
+        <div class="chart">
+            <div class="chart-meta">
+                <h4>Coffee Spots</h4>
+            </div>
+            <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ place_pcts|join:"," }}&amp;chs=650x200&amp;chl={{ place_names|safeseq|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+            <div class="cf"></div>
+        </div>
     </div>
 {% endblock %}

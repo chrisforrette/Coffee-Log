@@ -5,7 +5,7 @@
 {% block master_content %}
     <h2>Coffee Beans</h2>
     <hr />
-    <div class="content-inset">
+    <div class="inset">
         <ul>
             {% for coffee_bean in coffee_beans %}
             <li><a href="{{ coffee_bean.get_absolute_url }}">{{ coffee_bean.name }}</a> (<a href="{{ coffee_bean.roaster.get_absolute_url }}">{{ coffee_bean.roaster.name }}</a>)</li>

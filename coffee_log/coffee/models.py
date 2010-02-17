@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models as geo_models
 from coffee_log.settings_site import STATUS_OPTIONS
+import djangosphinx
 
 # Coffee Roasters
 
@@ -35,8 +36,10 @@ class CoffeeBean(models.Model):
     modified = models.DateTimeField(auto_now=True)
     status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
+    search = djangosphinx.SphinxSearch('coffee_coffeebean')
+    
     def __unicode__(self):
-        return self.name
+        return '%s (%s)' % (self.name, self.roaster.name)
     
     class Meta:
         ordering = ['name']
@@ -163,7 +166,7 @@ def create_coffee_place_geo_point(sender, instance, signal, *args, **kwargs):
             out = 'FOUND'
             coffee_place_geo = ''
             try:
-                coffee_place_geo = CoffeePlaceGeoPoint.objects.get(coffee_place=instance)
+                coffee_place_geo = CoffeePlaceGeoPoint.objects.get(coffee_place=instance.pk)
             except:
                 pass
             if coffee_place_geo:

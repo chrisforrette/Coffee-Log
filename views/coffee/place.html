@@ -34,7 +34,7 @@
     <h2>{{ coffee_place.name }}</h2>
     <hr />
     <div class="cf"></div>
-    <div class="content-inset">
+    <div class="inset">
         <div class="col-l">
             {% if coffee_place.coffeeplacegeopoint %}
             <div id="coffee-place-map"></div>
@@ -72,7 +72,7 @@
     {% if coffee_logs %}        
     <h3>Recent Visits</h3>
     <hr class="dk" />
-    {% include "coffee/list_coffee_log.html" %}
+    {% include "coffee/coffee_log_list.html" %}
     <hr />
     {% endif %}
     

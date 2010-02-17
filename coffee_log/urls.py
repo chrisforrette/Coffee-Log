@@ -13,23 +13,27 @@ urlpatterns = patterns('',
     
     # Coffee logs
     
-    (r'^/?$', 'coffee_log.coffee.views.index'),
-    (r'^coffee-log/add/?$', 'coffee_log.coffee.views.coffee_log_add'),
+    url(r'^/?$', 'coffee_log.coffee.views.index', name='home'),
+    url(r'^coffee-log/add/?$', 'coffee_log.coffee.views.coffee_log_add', name='coffee-log-add'),
     
     # Coffee Places
     
-    (r'^places/?$', 'coffee_log.coffee.views.places'),
-    (r'^places/([-_\w]+)/?$', 'coffee_log.coffee.views.place'),
+    url(r'^places/?$', 'coffee_log.coffee.views.places', name='coffee-places'),
+    url(r'^places/([-_\w]+)/?$', 'coffee_log.coffee.views.place', name='coffee-place'),
     
     # Coffee Roasters
     
-    (r'^roasters/?$', 'coffee_log.coffee.views.roasters'),
-    (r'^roasters/([-_\w]+)/?$', 'coffee_log.coffee.views.roaster'),
+    url(r'^roasters/?$', 'coffee_log.coffee.views.roasters', name='coffee-roasters'),
+    url(r'^roasters/([-_\w]+)/?$', 'coffee_log.coffee.views.roaster', name='coffee-roaster'),
     
-    # Coffee beans
+    # Coffee Beans
     
     (r'^beans/?$', 'coffee_log.coffee.views.beans'),
     (r'^beans/([-_\w]+)/?$', 'coffee_log.coffee.views.bean'),
+    
+    # Search
+    
+    url(r'^search/(places|roasters|beans)/?$', 'coffee_log.coffee.views.search_autocomplete', name='search'),
     
     # Users
     
@@ -38,6 +42,7 @@ urlpatterns = patterns('',
     (r'^users/register/?$', 'coffee_log.users.views.register'),
     (r'^users/send-confirmation/(\d+)/?$', 'coffee_log.users.views.send_confirmation'),
     (r'^users/confirm/([a-z0-9]+)/?$', 'coffee_log.users.views.confirm'),
+    (r'^users/([-_\w]+)/?$', 'coffee_log.users.views.profile'),
     
     
 )

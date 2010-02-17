@@ -1,9 +1,10 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from coffee_log.settings import SECRET_KEY
+from coffee_log.coffee.models import CoffeeLog
 from coffee_log.users.models import *
 from coffee_log.users.forms import UserRegistrationForm
 
@@ -24,7 +25,6 @@ def register(request):
             user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password1'])
             user.is_active = False
             user.save()
-            # @todo Make a user profile record
             return HttpResponseRedirect('/users/send-confirmation/%d/' % user.pk)
     else:
         initial = {}
@@ -64,3 +64,11 @@ def confirm(request, confirmation_key):
         user_profile.user.save()
         activated = True
     return render_to_response('users/confirm.html', locals())
+
+
+def profile(request, username):
+    profile_user = get_object_or_404(User, username=username, is_active=1)
+    
+    coffee_logs = CoffeeLog.objects.filter(status=2, user=profile_user.pk)
+    
+    return render_to_response('users/profile.html', locals())

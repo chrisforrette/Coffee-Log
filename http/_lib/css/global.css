@@ -42,7 +42,7 @@ h1 a {
     padding: 15px 25px;
 }
 
-#content h3 {
+#content h4 {
     font-size: 12px;
 }
 
@@ -118,16 +118,16 @@ LAYOUT
     color: #b35600;
 }
 
-.content-inset { padding: 25px; }
-.content-inset-hor { padding: 0 25px; }
-.content-inset-vert { padding: 25px 0; }
+.inset { padding: 25px; }
+.inset-hor { padding: 0 25px; }
+.inset-vert { padding: 25px 0; }
 
-#content .content-inset h3 {
+#content .inset h3 {
     padding-left: 0;
     padding-right: 0;
 }
 
-.content-inset hr {
+.inset hr {
     margin: 10px 0;
 }
 
@@ -263,6 +263,21 @@ HEADER
     padding: 0;
 }
 
+/* HEAD BAR */
+
+.hd-bar h3,
+.hd-bar h4 {
+    float: left;
+}
+
+.hd-bar {
+    background-color: #ccb78f;
+}
+
+#content .hd-bar a.btn-go-hd {
+    background-color: #e5cda1;
+}
+
 /*
 ----------------------------------------------------
 FORMS
@@ -298,6 +313,10 @@ div.selector select {
     font-weight: bold;
 }
 
+.field-text label {
+    margin-bottom: 2px;
+}
+
 .field-text input,
 .field-password input,
 .field-textarea textarea {
@@ -305,15 +324,15 @@ div.selector select {
     border-style: solid;
     border-width: 1px;
     color: #333;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     padding: 3px 6px;
 }
 
 /* CHECKBOX */
 
 .field-checkbox {
-    padding-top: 27px;
+    padding-top: 30px;
 }
 
 .field-checkbox label {
@@ -332,7 +351,7 @@ div.selector select {
     float: left;
 }
 
-/* FULL PAGE FORM*/
+/* FULL PAGE FORM */
 
 .form-full-page label {
     float: left;
@@ -391,7 +410,7 @@ PAGES
     background: #ccb78f url('/_img/icons/icn_arrow_go.gif') 94% 50% no-repeat;
     color: #99896b;
     font-size: 11px;
-    margin: 7px 12px;
+    margin: 10px 12px;
     float: right;
     padding: 4px 24px 4px 12px;
 }
@@ -455,10 +474,86 @@ COFFEE LOGS
     width: 840px;
 }
 
-.charts {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    padding: 20px 25px;
+/* CHARTS */
+
+#content .chart h4 {
+    font-size: 16px;
+}
+
+.chart .chart-meta,
+.chart img {
+    float: left;
+}
+
+.chart .chart-meta {
+    margin-right: 50px;
+    width: 350px;
+}
+
+/* HOT STUFF */
+
+ul.hot {
+    margin-top: 15px;
+}
+
+ul.hot li {
+    background: #ffe4b2 url('/_img/icons/icn_arrow_go.png') 12px 50% no-repeat;
+    margin-bottom: 1px;
+    padding: 8px 16px 8px 24px;
+}
+
+ul.hot li h4 {
+    float: left;
+}
+
+ul.hot li .tidbit {
+    color: #a69474;
+    float: right;
+}
+
+/* COFFEE LOG FORM */
+
+#form-coffee-log .inset,
+#form-coffee-log .inset h3 {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#field-coffee-drink,
+#field-consumption-date,
+#field-consumption-time,
+#field-is-homemade {
+    float: left;
+}
+
+#field-coffee-drink,
+#field-consumption-date,
+#field-consumption-time {
+    margin-right: 25px;
+}
+
+#field-coffee-drink {
+    width: 370px;
+}
+
+#field-coffee-drink div.selector,
+#field-coffee-drink select {
+    width: 370px;
+}
+
+#field-coffee-drink div.selector span {
+    width: 338px;
+}
+
+#field-consumption-date,
+#field-consumption-time,
+#field-is-homemade {
+    width: 185px;
+}
+
+#field-consumption-date input,
+#field-consumption-time input {
+    width: 177px;
 }
 
 /*

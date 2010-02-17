@@ -7,14 +7,14 @@
     <h2>{{ coffee_roaster.name }}</h2>
     <hr />
     <div class="cf"></div>
-    <div class="content-inset">
+    <div class="inset">
         <h3>Coming Soon</h3>
     </div>
     
     {% if coffee_places %}
     <h3>Locations</h3>
     <hr />
-    <div class="content-inset">
+    <div class="inset">
         <ul>
             {% for coffee_place in coffee_places %}
             <li><a href="{{ coffee_place.get_absolute_url }}">{{ coffee_place.name }}</a></li>
@@ -26,7 +26,7 @@
     {% if coffee_beans %}
     <h3>Coffee Varietals</h3>
     <hr />
-    <div class="content-inset">
+    <div class="inset">
         <ul>
             {% for coffee_bean in coffee_beans %}
             <li><a href="{{ coffee_bean.get_absolute_url }}">{{ coffee_bean.name }}</a></li>

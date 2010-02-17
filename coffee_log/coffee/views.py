@@ -1,6 +1,7 @@
 import math
+from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
-from django.db.models import Count
+from django.db.models import Q, Count
 from django.contrib.auth.decorators import login_required
 from coffee_log.coffee.models import *
 
@@ -9,7 +10,7 @@ from coffee_log.coffee.models import *
 def index(request):
     
     coffee_logs = CoffeeLog.objects.all()[:10]
-    
+    print coffee_logs
     # Get coffee drinks and counts
     
     drinks = CoffeeDrink.objects.all().annotate(Count('coffeelog'))
@@ -46,16 +47,33 @@ def index(request):
     for count in place_counts:
         place_pcts.append(int(round((float(count)/float(total)) * 100))) 
     
+    # Count homemade
+    
+    print CoffeeLog.objects.all().annotate(Count('is_homemade'))
+    
+    # ---- Hot spots
+    
+    # Most visited
+    
+    time = ''
+    
+    places_most_visited = CoffeePlace.objects.all().annotate(Count('coffeelog')).order_by('-coffeelog__count')[0:5]
+    
+    # Newest spots
+    
+    places_new = CoffeePlace.objects.all().annotate(Count('coffeelog')).order_by('-created')[0:5]
+    
     return render_to_response('coffee/index.html', locals())
 
 @login_required
 def coffee_log_add(request):
     
+    print CoffeeBean.search.query('peru')
+    
     from coffee_log.coffee.forms import CoffeeLogAddForm
     
     if request.method == 'POST':
         form = CoffeeLogAddForm(request.POST)
-        
     else:
         form = CoffeeLogAddForm()
     
@@ -115,3 +133,36 @@ def bean(request, slug):
     coffee_logs = CoffeeLog.objects.filter(coffee_bean=coffee_bean)[:10]
 
     return render_to_response('coffee/bean.html', locals())
+
+# Search
+
+def search_autocomplete(request, which):
+    
+    from django.utils.encoding import smart_str
+    
+    limit = request.GET.get('limit', 10)
+    query = smart_str(request.GET.get('q', None))
+    
+    results = ''
+    rows = []
+    
+    if query:
+        if which == 'places':
+            rows = CoffeePlace.objects.filter(
+                Q(name__icontains=query) 
+                | Q(address__icontains=query)
+                | Q(city__icontains=query)
+            ).order_by('name')[:limit]
+        elif which == 'roasters':
+            rows = CoffeeRoaster.objects.filter(Q(name__icontains=query)).order_by('name')[:limit]
+        elif which == 'beans':
+            rows = CoffeeBean.search.query(query)
+            # rows = CoffeeBean.objects.filter(name__icontains=query) 
+
+        print rows
+        if rows:
+            for row in rows:
+                results += '%d|%s\n' % (row.pk, row.name)
+    
+    # return render_to_response('autocomplete.html', locals())
+    return HttpResponse(results)

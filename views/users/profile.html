@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block master_page_title %}{{ block.super }} | Users | {{ profile_user.username }}{% endblock %}
+
+{% block master_content %}
+    <h2>{{ profile_user.username }}</h2>
+    <hr />
+    
+    {% if coffee_logs %}        
+    <h3>Recent Logs</h3>
+    <hr class="dk" />
+    {% include "coffee/coffee_log_list.html" %}
+    <hr />
+    {% endif %}
+    
+{% endblock %}

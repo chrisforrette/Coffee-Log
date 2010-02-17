@@ -1,5 +1,50 @@
 {% extends "master.html" %}
 
+{% block master_js %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="/_lib/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        
+        var aAutocomplete = [
+            ['coffee_bean', '/search/beans/']
+        ];
+        
+        var obj = {
+            'coffee_bean': '/search/beans/',
+            'coffee_place': '/search/places/',
+            'coffee_roaster': '/search/roasters/'
+        }
+        
+        $(document).ready(function() {
+            function formatItem(row) {
+                return row[1];
+        	}
+        	
+        	function formatResult(row) {
+        	    return row[1];
+        	}
+        	
+        	for (var i=0; i < aAutocomplete.length; i++) {
+        	    
+        	    var sTextField = '#id_' + aAutocomplete[i][0] + '_text';
+        	    var sIdField = '#id_' + aAutocomplete[i][0] + '_id';
+        	    console.log(sTextField);
+        	    console.log(sIdField);
+                $(sTextField).autocomplete(aAutocomplete[i][1], {
+                    formatItem: formatItem,
+                    formatResult: formatResult
+                });
+
+                $(sTextField).result(function(event, data, formatted) {
+                    $(sIdField).val(data[0]);
+                });
+            };
+        	
+        });
+        
+    </script>
+{% endblock %}
+
 {% block master_content %}
     {% include "coffee/coffee_log_form.html" %}
 {% endblock %}
