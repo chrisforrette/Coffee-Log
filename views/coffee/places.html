@@ -1,22 +1,113 @@
 {% extends "master.html" %}
 
+{% block master_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" charset="utf-8">
+        
+        var aPlaces = [
+        
+        {% for coffee_place in coffee_places %}
+            {% if coffee_place.coffeeplacegeopoint %}
+            {
+                'id': 'place-map-{{ coffee_place.pk }}',
+                'latitude': {{ coffee_place.coffeeplacegeopoint.geo_point.tuple.1 }},
+                'longitude': {{ coffee_place.coffeeplacegeopoint.geo_point.tuple.0 }}
+            }{% if not forloop.last %}, 
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+        ];
+        
+        var aMaps = [];
+        var aMarkers = [];
+        var aLatLng = [];
+        
+        $(window).load(function() {
+            for (var i=0; i < aPlaces.length; i++) {
+                
+                aLatLng[i] = new google.maps.LatLng(aPlaces[i].latitude, aPlaces[i].longitude);
+                
+                var oOpt = {
+                    'zoom': 14,
+                    'center': aLatLng[i],
+                    'mapTypeId': google.maps.MapTypeId.ROADMAP
+                };
+                
+                aMaps[i] = new google.maps.Map(document.getElementById(aPlaces[i].id), oOpt);
+                aMarkers[i] = new google.maps.Marker({
+                    'map': aMaps[i],
+                    'position': aLatLng[i]
+                });
+            };
+        });
+        
+    </script>
+{% endblock %}
+
 {% block master_page_title %}{{ block.super }} | Places{% endblock %}
 
+{% block master_nav_class_places %}on{% endblock %}
+
 {% block master_content %}
-    <form id="form-coffee-place-proximity" class="form-horizontal pg-head-form-search" action="/places/" method="get" accept-charset="utf-8">
-        <div class="field field-text">
-            <label for="q">Near</label>
-            <div class="input"><input type="text" name="q" value="" /></div>
-        </div>
-        <div class="field field-submit"><input type="submit" name="submit" value="Go" /></div>
-        <div class="cf"></div>
-    </form>
+    {# <form id="form-coffee-place-proximity" class="form-horizontal pg-head-form-search" action="/places/" method="get" accept-charset="utf-8"> #}
+    {#     <div class="field field-text"> #}
+    {#         <label for="q">Near</label> #}
+    {#         <div class="input"><input type="text" name="q" value="" /></div> #}
+    {#     </div> #}
+    {#     <div class="field field-submit"><input type="submit" name="submit" value="Go" /></div> #}
+    {#     <div class="cf"></div> #}
+    {# </form> #}
     <h2>Coffee Places</h2>
     <hr />
     <div class="inset">
-        <ul>
+        <div class="hd-sort">
+            <div class="place-map">&nbsp;</div>
+            <div class="place-name">
+                <a href="#">Name</a>
+            </div>
+            <div class="place-roaster">
+                <a href="#">Roaster</a>
+            </div>
+            <div class="place-categories">
+                <a href="#">Categories</a>
+            </div>
+            <div class="place-logs">
+                <a href="#">Coffee Logs</a>
+            </div>
+            <div class="cf"></div>
+        </div>
+        <ul class="places-list">
             {% for coffee_place in coffee_places %}
-            <li><a href="{{ coffee_place.get_absolute_url }}">{{ coffee_place.name }}</a></li>
+            <li>
+                <div class="place-map">
+                    {% if coffee_place.coffeeplacegeopoint %}<div id="place-map-{{ coffee_place.pk }}" class="place-map-box"></div>
+                    {% else %}&nbsp;
+                    {% endif %}
+                </div>
+                <div class="place-name">
+                    <h3><a href="{{ coffee_place.get_absolute_url }}">{{ coffee_place.name }}</a></h3>
+                    {% if coffee_place.address %}
+                    <p>
+                        {{ coffee_place.address }}<br />
+                        {{ coffee_place.city }}, {{ coffee_place.state }} {{ coffee_place.zip }}
+                    </p>
+                    {% endif %}
+                </div>
+                <div class="place-roaster">
+                    {% if coffee_place.roaster %}
+                    <h4><a href="{{ coffee_place.roaster.get_absolute_url }}">{{ coffee_place.roaster.name }}</a></h4>
+                    {% else %}&nbsp;
+                    {% endif %}
+                </div>
+                <div class="place-categories">
+                    &nbsp;
+                </div>
+                <div class="place-logs">
+                    {{ coffee_place.coffeelog__count }}
+                </div>
+                <div class="cf"></div>
+            </li>
             {% endfor %}
         </ul>
     </div>

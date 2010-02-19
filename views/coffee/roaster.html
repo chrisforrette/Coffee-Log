@@ -2,6 +2,8 @@
 
 {% block master_page_title %}{{ block.super }} | Coffee Roasters | {{ coffee_roaster.name }}{% endblock %}
 
+{% block master_nav_class_roasters %}on{% endblock %}
+
 {% block master_content %}
     <a href="/roasters/" class="btn-go-hd">See All Coffee Roasters</a>
     <h2>{{ coffee_roaster.name }}</h2>

@@ -2,6 +2,8 @@
 
 {% block master_page_title %}{{ block.super }} | Coffee Beans | {{ coffee_bean.name }}{% endblock %}
 
+{% block master_nav_class_beans %}on{% endblock %}
+
 {% block master_content %}
     <a href="/beans/" class="btn-go-hd">See All Coffee Beans</a>
     <h2>{{ coffee_bean.name }} (<a href="{{ coffee_bean.roaster.get_absolute_url }}">{{ coffee_bean.roaster.name }}</a>)</h2>

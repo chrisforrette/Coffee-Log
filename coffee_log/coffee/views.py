@@ -82,7 +82,7 @@ def coffee_log_add(request):
 # Coffee places list
 
 def places(request):
-    coffee_places = CoffeePlace.objects.filter(status=2)
+    coffee_places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog'))
     return render_to_response('coffee/places.html', locals())
 
 # Coffee place page

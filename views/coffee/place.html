@@ -2,6 +2,8 @@
 
 {% block master_page_title %}{{ block.super }} | Place | {{ coffee_place.name }}{% endblock %}
 
+{% block master_nav_class_places %}on{% endblock %}
+
 {% block master_js %}
     {{ block.super }}
     {% if coffee_place.coffeeplacegeopoint %}
