@@ -59,7 +59,7 @@ class CoffeeDrink(models.Model):
     status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
     
     def __str__(self):
         return self.name
@@ -87,6 +87,7 @@ class CoffeeDrinkSize(models.Model):
 # Coffee Place Category
 
 class CoffeePlaceCategory(models.Model):
+    
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
@@ -103,6 +104,7 @@ class CoffeePlaceCategory(models.Model):
 # Coffee Places
 
 class CoffeePlace(models.Model):
+    
     roaster = models.ForeignKey(CoffeeRoaster, blank=True, null=True)
     coffee_place_categories = models.ManyToManyField(CoffeePlaceCategory, blank=True, null=True)
     name = models.CharField(max_length=255)
@@ -157,31 +159,32 @@ class CoffeePlaceGeoPoint(models.Model):
 # Post save for CoffeePlace to create or update geo point
 
 def create_coffee_place_geo_point(sender, instance, signal, *args, **kwargs):
-    out = ''
-    if not instance.address == '':
-        from coffee_log.google_maps import get_geo_point
-        print 'SEARCHING ADDRESS: ' + instance.full_address
-        geo_point = get_geo_point(instance.full_address)
-        if geo_point:
-            out = 'FOUND'
-            coffee_place_geo = ''
-            try:
-                coffee_place_geo = CoffeePlaceGeoPoint.objects.get(coffee_place=instance.pk)
-            except:
-                pass
-            if coffee_place_geo:
-                out += ', UPDATING GEO POINT'
-                coffee_place_geo.geo_address = geo_point[0]
-                coffee_place_geo.geo_point = geo_point[1]
-            else:
-                out += ', ADDING GEO POINT'
-                coffee_place_geo = CoffeePlaceGeoPoint(coffee_place=instance, geo_address = geo_point[0], geo_point=geo_point[1])
-            coffee_place_geo.save()
-        else:
-            out = 'NOT FOUND'
-    else:
-        out = 'ADDRESS EMPTY'
-    print out
+    # out = ''
+    # if not instance.address == '':
+    #     from coffee_log.google_maps import get_geo_point
+    #     print 'SEARCHING ADDRESS: ' + instance.full_address
+    #     geo_point = get_geo_point(instance.full_address)
+    #     if geo_point:
+    #         out = 'FOUND'
+    #         coffee_place_geo = ''
+    #         try:
+    #             coffee_place_geo = CoffeePlaceGeoPoint.objects.get(coffee_place=instance.pk)
+    #         except:
+    #             pass
+    #         if coffee_place_geo:
+    #             out += ', UPDATING GEO POINT'
+    #             coffee_place_geo.geo_address = geo_point[0]
+    #             coffee_place_geo.geo_point = geo_point[1]
+    #         else:
+    #             out += ', ADDING GEO POINT'
+    #             coffee_place_geo = CoffeePlaceGeoPoint(coffee_place=instance, geo_address = geo_point[0], geo_point=geo_point[1])
+    #         coffee_place_geo.save()
+    #     else:
+    #         out = 'NOT FOUND'
+    # else:
+    #     out = 'ADDRESS EMPTY'
+    # print out
+    return True
 
 # Register CoffeePlace post save signal
 

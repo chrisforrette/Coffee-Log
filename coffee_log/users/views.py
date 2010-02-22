@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.db.models import Count
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +8,10 @@ from coffee_log.settings import SECRET_KEY
 from coffee_log.coffee.models import CoffeeLog
 from coffee_log.users.models import *
 from coffee_log.users.forms import UserRegistrationForm
+
+def index(request):
+    users = User.objects.filter(is_active=True).annotate(Count('coffeelog')).order_by('-coffeelog__created')
+    return render_to_response("users/index.html", locals())
 
 def logout_view(request):
     

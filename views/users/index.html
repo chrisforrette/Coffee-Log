@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block master_nav_class_users %}on{% endblock %}
+
+{% block master_content %}
+    <h2>Users</h2>
+    <hr />
+    <div class="inset">
+        <ul>
+            {% for user in users %}
+            <li>
+                <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>
+                {{ user.coffeelog }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

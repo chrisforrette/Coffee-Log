@@ -9,14 +9,11 @@
     <h2>{{ coffee_bean.name }} (<a href="{{ coffee_bean.roaster.get_absolute_url }}">{{ coffee_bean.roaster.name }}</a>)</h2>
     <hr />
     <div class="cf"></div>
-    <div class="inset">
-        <h3>Coming Soon</h3>
-    </div>
     
     {% if coffee_logs %}        
     <h3>Recent Brews</h3>
     <hr class="dk" />
-    {% include "coffee/list_coffee_log.html" %}
+    {% include "coffee/coffee_log_list.html" %}
     <hr />
     {% endif %}
     

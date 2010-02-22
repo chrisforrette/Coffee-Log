@@ -8,9 +8,9 @@ from coffee_log.coffee.models import *
 # Home page
 
 def index(request):
+        
+    coffee_logs = CoffeeLog.objects.filter(status=2)[:10]
     
-    coffee_logs = CoffeeLog.objects.all()[:10]
-    print coffee_logs
     # Get coffee drinks and counts
     
     drinks = CoffeeDrink.objects.all().annotate(Count('coffeelog'))
@@ -49,7 +49,22 @@ def index(request):
     
     # Count homemade
     
-    print CoffeeLog.objects.all().annotate(Count('is_homemade'))
+    homemade = CoffeeLog.objects.values('is_homemade').annotate(count=Count('pk'))
+    homemade_names = ['Homemade', 'Not Homemade']
+    homemade_counts = {}
+    homemade_pcts = []
+    
+    for count in homemade:
+        if count['is_homemade'] == 1:
+            homemade_counts[0] = count['count']
+        else:
+            homemade_counts[1] = count['count']
+    
+    homemade_counts = list(homemade_counts.values())
+    total = sum(homemade_counts)
+    
+    for count in homemade_counts:
+        homemade_pcts.append(int(round((float(count)/float(total)) * 100)))
     
     # ---- Hot spots
     
@@ -67,13 +82,14 @@ def index(request):
 
 @login_required
 def coffee_log_add(request):
-    
-    print CoffeeBean.search.query('peru')
-    
+        
     from coffee_log.coffee.forms import CoffeeLogAddForm
     
     if request.method == 'POST':
         form = CoffeeLogAddForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponeRedirect('/')
     else:
         form = CoffeeLogAddForm()
     
@@ -82,6 +98,18 @@ def coffee_log_add(request):
 # Coffee places list
 
 def places(request):
+    
+    # from coffee_log.google_maps import get_geo_point
+    # from django.contrib.gis.measure import Distance, D
+    # 
+    # 
+    # q = '7719 N. McKenna Ave, Portland, OR 97203'
+    # proximity = request.GET.get('proximity', 50)
+    # point = get_geo_point(q)
+    # 
+    # if point:
+    #     print CoffeePlaceGeoPoint.objects.filter(geo_point__distance_lte=(point[1], D(mi=100)))
+    
     coffee_places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog'))
     return render_to_response('coffee/places.html', locals())
 

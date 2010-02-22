@@ -2,10 +2,15 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from coffee_log.settings_site import STATUS_OPTIONS
+from coffee_log.coffee.models import CoffeeLog, CoffeeBean, CoffeeDrink, CoffeePlace
 
 class UserProfile(models.Model):
+    
     user = models.OneToOneField(User)
     confirmation_hash = models.CharField(max_length=50)
+    favorite_drink = models.ForeignKey(CoffeeDrink, null=True, blank=True)
+    favorite_bean = models.ForeignKey(CoffeeBean, null=True, blank=True)
+    favorite_place = models.ForeignKey(CoffeePlace, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
@@ -38,6 +43,16 @@ class UserProfile(models.Model):
         hasher.update(str(week))
         
         return hasher.hexdigest()
+    
+    # Save user favorites
+    
+    def update_favorites(self):
+        
+        # Favorite place
+        
+        place = CoffeeLog.objects.filter(user=self.pk, status=2).annotate(models.Count('coffee_place'))
+        
+        return place
 
 # User post save signal to crate corresponding user profile record
 

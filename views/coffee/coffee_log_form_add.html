@@ -1,0 +1,130 @@
+    <h2>Add Coffee Log</h2>
+    <hr />
+    <form id="form-coffee-log" action="/coffee-log/add/" method="post" accept-charset="utf-8">
+        <div class="inset">
+            {% if form.errors %}
+                {{ form.errors }}
+            {% endif %}
+            <div id="field-coffee-drink" class="field field-select">
+                {{ form.coffee_drink.label_tag }}
+                <div class="input">
+                    {{ form.coffee_drink }}
+                </div>
+                {% if form.coffee_drink.errors %}
+                <div class="errors">
+                    {{ form.coffee_drink.errors }}
+                </div>
+                {% endif %}
+                {% if form.coffee_drink.help_text %}
+                <div class="hint">{{ form.coffee_drink.help_text }}</div>
+                {% endif %}
+            </div>
+            <div id="field-coffee-drink-size" class="field field-select">
+                {{ form.coffee_drink_size.label_tag }}
+                <div class="input">
+                    {{ form.coffee_drink_size }}
+                </div>
+                {% if form.coffee_drink_size.errors %}
+                <div class="errors">
+                    {{ form.coffee_drink_size.errors }}
+                </div>
+                {% endif %}
+                {% if form.coffee_drink_size.help_text %}
+                <div class="hint">{{ form.coffee_drink_size.help_text }}</div>
+                {% endif %}
+            </div>
+            <div id="field-consumption-date" class="field field-text">
+                {{ form.consumption_date.label_tag }}
+                <div class="input">
+                    {{ form.consumption_date }}
+                </div>
+                {% if form.consumption_date.errors %}
+                <div class="errors">
+                    {{ form.consumption_date.errors }}
+                </div>
+                {% endif %}
+                {% if form.consumption_date.help_text %}
+                <div class="hint">{{ form.consumption_date.help_text }}</div>
+                {% endif %}
+            </div>
+            <div id="field-consumption-time" class="field field-text">
+                {{ form.consumption_time.label_tag }}
+                <div class="input">
+                    {{ form.consumption_time }}
+                </div>
+                {% if form.consumption_time.errors %}
+                <div class="errors">
+                    {{ form.consumption_time.errors }}
+                </div>
+                {% endif %}
+                {% if form.consumption_time.help_text %}
+                <div class="hint">{{ form.consumption_time.help_text }}</div>
+                {% endif %}
+            </div>
+            <div id="field-is-homemade" class="field field-checkbox">
+                <div class="input">
+                    {{ form.is_homemade }}
+                </div>
+                {{ form.is_homemade.label_tag }}
+                <div class="cf"></div>
+            </div>
+            <div class="cf"></div>
+        </div>
+        <div class="inset-lrb">
+            <div id="field-coffee-place" class="field field-select">
+                {{ form.coffee_place.label_tag }}
+                <div class="input">
+                    {{ form.coffee_place }}
+                </div>
+                {% if form.coffee_place.errors %}
+                <div class="errors">
+                    {{ form.coffee_place.errors }}
+                </div>
+                {% endif %}
+                {% if form.coffee_place.help_text %}
+                <div class="hint">{{ form.coffee_place.help_text }}</div>
+                {% endif %}
+                <div class="cf"></div>
+            </div>
+            <div id="field-coffee-bean" class="field field-select">
+                {{ form.coffee_bean.label_tag }}
+                <div class="input">
+                    {{ form.coffee_bean }}
+                </div>
+                {% if form.coffee_bean.errors %}
+                <div class="errors">
+                    {{ form.coffee_bean.errors }}
+                </div>
+                {% endif %}
+                {% if form.coffee_bean.help_text %}
+                <div class="hint">{{ form.coffee_bean.help_text }}</div>
+                {% endif %}
+                <div class="cf"></div>
+            </div>
+            <div id="field-notes" class="field field-text">
+                {{ form.notes.label_tag }}
+                <div class="input">
+                    {{ form.notes }}
+                </div>
+                {% if form.notes.errors %}
+                <div class="errors">
+                    {{ form.notes.errors }}
+                </div>
+                {% endif %}
+                {% if form.notes.help_text %}
+                <div class="hint">{{ form.notes.help_text }}</div>
+                {% endif %}
+                <div class="cf"></div>
+            </div>
+            <div class="cf"></div>
+        </div>
+
+        <div class="cf"></div>
+        <hr />
+        <div class="inset">
+            <div class="field field-submit">
+                <div class="input"><input type="submit" name="submit" value="Log it!" /></div>
+            </div>
+        </div>
+        
+    </form>

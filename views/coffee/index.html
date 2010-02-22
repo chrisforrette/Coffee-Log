@@ -67,4 +67,14 @@
             <div class="cf"></div>
         </div>
     </div>
+    <hr />
+    <div class="inset">
+        <div class="chart">
+            <div class="chart-meta">
+                <h4>Homemade</h4>
+            </div>
+            <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ homemade_pcts|join:"," }}&amp;chs=650x200&amp;chl={{ homemade_names|safeseq|join:"|"|urlencode }}&amp;chco=ccb78f&amp;chf=bg,s,e6cea1" />
+            <div class="cf"></div>
+        </div>
+    </div>
 {% endblock %}

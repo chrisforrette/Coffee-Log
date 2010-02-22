@@ -117,6 +117,7 @@ LAYOUT
 .inset { padding: 25px; }
 .inset-hor { padding: 0 25px; }
 .inset-vert { padding: 25px 0; }
+.inset-lrb { padding: 0 25px 25px;}
 
 #content .inset h3 {
     padding-left: 0;
@@ -548,42 +549,79 @@ ul.hot li .tidbit {
     padding-top: 10px;
 }
 
+#form-coffee-log div.selector { margin-bottom: 0; }
+
+#form-coffee-log h3 {
+    font-size: 14px;
+}
+
 #field-coffee-drink,
+#field-coffee-drink-size,
 #field-consumption-date,
 #field-consumption-time,
-#field-is-homemade {
+#field-is-homemade,
+#field-coffee-place,
+#field-coffee-bean,
+#field-notes {
     float: left;
 }
 
 #field-coffee-drink,
+#field-coffee-drink-size,
 #field-consumption-date,
-#field-consumption-time {
+#field-consumption-time,
+#field-coffee-place,
+#field-coffee-bean {
     margin-right: 25px;
 }
 
-#field-coffee-drink {
-    width: 370px;
-}
+/* COFFEE DRINK SELECT */
 
+#field-coffee-drink,
 #field-coffee-drink div.selector,
 #field-coffee-drink select {
-    width: 370px;
+    width: 300px;
 }
 
 #field-coffee-drink div.selector span {
-    width: 338px;
+    width: 263px;
+}
+
+/* COFFEE DRINK SIZE SELECT */
+
+#field-coffee-drink-size,
+#field-coffee-drink-size div.selector,
+#field-coffee-drink-size select {
+    width: 100px;
+}
+
+#field-coffee-drink-size div.selector span {
+    width: 63px;
 }
 
 #field-consumption-date,
 #field-consumption-time,
 #field-is-homemade {
-    width: 185px;
+    width: 165px;
 }
 
 #field-consumption-date input,
 #field-consumption-time input {
-    width: 177px;
+    width: 151px;
 }
+
+/* DETAIL FIELDS */
+
+#field-coffee-place, #field-coffee-place select { width: 300px; }
+#field-coffee-place .selector { width: 290px; }
+#field-coffee-place .selector span { width: 263px; }
+
+#field-coffee-bean, #field-coffee-bean select { width: 290px; }
+#field-coffee-bean .selector { width: 280px; }
+#field-coffee-bean .selector span { width: 253px; }
+
+#field-notes { width: 332px; }
+#field-notes input { width: 318px; }
 
 /*
 ----------------------------------------------------
