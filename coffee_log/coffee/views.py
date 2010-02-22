@@ -1,5 +1,5 @@
 import math
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.db.models import Q, Count
 from django.contrib.auth.decorators import login_required
@@ -86,12 +86,17 @@ def coffee_log_add(request):
     from coffee_log.coffee.forms import CoffeeLogAddForm
     
     if request.method == 'POST':
-        form = CoffeeLogAddForm(request.POST)
+        data = request.POST.copy()
+        data['user'] = int(request.user.pk)
+        form = CoffeeLogAddForm(data)
         if form.is_valid():
             form.save()
-            return HttpResponeRedirect('/')
+            return HttpResponseRedirect('/')
     else:
         form = CoffeeLogAddForm()
+    
+    print request.user.pk
+    print type(form)
     
     return render_to_response('coffee/coffee_log_add.html', locals())
 

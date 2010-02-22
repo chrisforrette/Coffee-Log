@@ -1,5 +1,7 @@
 {% extends "master.html" %}
 
+{% block master_page_title %}{{ block.super }} | Add Coffee Log{% endblock %}
+
 {% block master_js %}
     {{ block.super }}
     <script type="text/javascript" charset="utf-8" src="/_lib/js/jquery.autocomplete.js"></script>
@@ -44,6 +46,8 @@
         
     </script>
 {% endblock %}
+
+{% block master_nav_class_logs %}on{% endblock %}
 
 {% block master_content %}
     {% include "coffee/coffee_log_form_add.html" %}

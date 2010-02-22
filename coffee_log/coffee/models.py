@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import force_unicode
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models as geo_models
 from coffee_log.settings_site import STATUS_OPTIONS
@@ -59,7 +60,7 @@ class CoffeeDrink(models.Model):
     status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
     
     def __unicode__(self):
-        return unicode(self.name)
+        return force_unicode(self.name)
     
     def __str__(self):
         return self.name

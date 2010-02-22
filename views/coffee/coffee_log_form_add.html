@@ -33,7 +33,7 @@
                 <div class="hint">{{ form.coffee_drink_size.help_text }}</div>
                 {% endif %}
             </div>
-            <div id="field-consumption-date" class="field field-text">
+            <!--<div id="field-consumption-date" class="field field-text">
                 {{ form.consumption_date.label_tag }}
                 <div class="input">
                     {{ form.consumption_date }}
@@ -59,6 +59,20 @@
                 {% endif %}
                 {% if form.consumption_time.help_text %}
                 <div class="hint">{{ form.consumption_time.help_text }}</div>
+                {% endif %}
+            </div>-->
+            <div id="field-consumption-date" class="field field-text">
+                {{ form.consumption.label_tag }}
+                <div class="input">
+                    {{ form.consumption }}
+                </div>
+                {% if form.consumption.errors %}
+                <div class="errors">
+                    {{ form.consumption.errors }}
+                </div>
+                {% endif %}
+                {% if form.consumption.help_text %}
+                <div class="hint">{{ form.consumption.help_text }}</div>
                 {% endif %}
             </div>
             <div id="field-is-homemade" class="field field-checkbox">
