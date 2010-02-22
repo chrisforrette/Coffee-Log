@@ -2,9 +2,15 @@
 
 {% block master_page_title %}{{ block.super }} | Add Coffee Log{% endblock %}
 
+{% block master_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/_lib/css/smoothness/jquery-ui-1.7.2.custom.css" type="text/css" media="screen" charset="utf-8" />
+{% endblock %}
+
 {% block master_js %}
     {{ block.super }}
     <script type="text/javascript" charset="utf-8" src="/_lib/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/_lib/js/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         
         var aAutocomplete = [
@@ -17,31 +23,39 @@
             'coffee_roaster': '/search/roasters/'
         }
         
+        // $(document).ready(function() {
+        //     function formatItem(row) {
+        //         return row[1];
+        //  }
+        //  
+        //  function formatResult(row) {
+        //      return row[1];
+        //  }
+        //  
+        //  for (var i=0; i < aAutocomplete.length; i++) {
+        //      
+        //      var sTextField = '#id_' + aAutocomplete[i][0] + '_text';
+        //      var sIdField = '#id_' + aAutocomplete[i][0] + '_id';
+        //      console.log(sTextField);
+        //      console.log(sIdField);
+        //         $(sTextField).autocomplete(aAutocomplete[i][1], {
+        //             formatItem: formatItem,
+        //             formatResult: formatResult
+        //         });
+        // 
+        //         $(sTextField).result(function(event, data, formatted) {
+        //             $(sIdField).val(data[0]);
+        //         });
+        //     };
+        //  
+        // });
+        
         $(document).ready(function() {
-            function formatItem(row) {
-                return row[1];
-        	}
-        	
-        	function formatResult(row) {
-        	    return row[1];
-        	}
-        	
-        	for (var i=0; i < aAutocomplete.length; i++) {
-        	    
-        	    var sTextField = '#id_' + aAutocomplete[i][0] + '_text';
-        	    var sIdField = '#id_' + aAutocomplete[i][0] + '_id';
-        	    console.log(sTextField);
-        	    console.log(sIdField);
-                $(sTextField).autocomplete(aAutocomplete[i][1], {
-                    formatItem: formatItem,
-                    formatResult: formatResult
-                });
-
-                $(sTextField).result(function(event, data, formatted) {
-                    $(sIdField).val(data[0]);
-                });
-            };
-        	
+            $('#id_consumption_0').datepicker({
+                'dateFormat': 'yy-mm-dd',
+                'hideAnim': 'fadeOut',
+                'showAnim': 'fadeIn'
+            });
         });
         
     </script>
