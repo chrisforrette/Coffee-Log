@@ -8,7 +8,7 @@ from coffee_log.coffee.models import *
 # Home page
 
 def index(request):
-        
+    print dir(request.user)
     coffee_logs = CoffeeLog.objects.filter(status=2)[:10]
     
     # Get coffee drinks and counts
@@ -149,7 +149,7 @@ def place(request, slug):
 
 def roasters(request):
     coffee_roasters = CoffeeRoaster.objects.filter(status=2)
-    return render_to_response('coffee/roasters.html', locals())
+    return render_to_response('coffee/roasters_index.html', locals())
 
 # Coffee roasters list
 

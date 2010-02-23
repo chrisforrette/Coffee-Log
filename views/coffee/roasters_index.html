@@ -1,0 +1,11 @@
+{% extends "coffee/roasters.html" %}
+
+{% block roasters_content %}
+    <div class="inset">
+        <ul>
+            {% for coffee_roaster in coffee_roasters %}
+            <li><a href="{{ coffee_roaster.get_absolute_url }}">{{ coffee_roaster.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

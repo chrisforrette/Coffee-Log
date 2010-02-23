@@ -5,13 +5,14 @@
 {% block master_nav_class_roasters %}on{% endblock %}
 
 {% block master_content %}
-    <h2>Coffee Roasters</h2>
-    <hr />
-    <div class="inset">
-        <ul>
-            {% for coffee_roaster in coffee_roasters %}
-            <li><a href="{{ coffee_roaster.get_absolute_url }}">{{ coffee_roaster.name }}</a></li>
-            {% endfor %}
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first"><a href="{% url coffee-roasters %}">List</a></li>
+            <li class="last"><a href="{% url coffee-roasters-add %}">Add</a></li>
         </ul>
+        <h2>Coffee Roasters</h2>
+        <div class="cf"></div>
     </div>
+    <hr />
+    {% block roasters_content %}{% endblock %}
 {% endblock %}

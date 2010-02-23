@@ -1,4 +1,43 @@
-<form action="{% url coffee-roasters-add %}" method="post" accept-charset="utf-8">
-    {{ form }}
-    <input type="submit" name="Submit" value="Add Coffee Roaster" />
+<form class="form-3-col" action="{% url coffee-roasters-add %}" method="post" accept-charset="utf-8">
+    <div class="col-3-l">
+        <div id="field-name-date" class="field field-text">
+            {{ form.name.label_tag }}
+            <div class="input">
+                {{ form.name }}
+            </div>
+            {% if form.name.errors %}
+            <div class="errors">
+                {{ form.name.errors }}
+            </div>
+            {% endif %}
+            {% if form.name.help_text %}
+            <div class="hint">{{ form.name.help_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-3-c">
+        <div id="field-url-date" class="field field-text">
+            {{ form.url.label_tag }}
+            <div class="input">
+                {{ form.url }}
+            </div>
+            {% if form.url.errors %}
+            <div class="errors">
+                {{ form.url.errors }}
+            </div>
+            {% endif %}
+            {% if form.url.help_text %}
+            <div class="hint">{{ form.url.help_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="cf"></div>
+    
+    <hr />
+    <div class="inset">
+        <div class="field field-submit">
+            <div class="input"><input type="submit" name="submit" value="Add Coffee Roaster" /></div>
+        </div>
+    </div>
+    
 </form>
