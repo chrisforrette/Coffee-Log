@@ -28,3 +28,36 @@ class CoffeeLogAddForm(forms.ModelForm):
             'consumption',
             'notes',
         )
+
+# Coffee place form
+
+class CoffeePlaceAddForm(forms.ModelForm):
+    
+    class Meta:
+        model = CoffeePlace
+        exclude = (
+            'slug',
+            'status'
+        )
+
+# Coffee roaster form
+
+class CoffeeRoasterAddForm(forms.ModelForm):
+
+    class Meta:
+        model = CoffeeRoaster
+        exclude = (
+            'slug',
+            'status'
+        )
+
+# Coffee bean
+
+class CoffeeBeanAddForm(forms.ModelForm):
+
+    class Meta:
+        model = CoffeeBean
+        exclude = (
+            'slug',
+            'status'
+        )

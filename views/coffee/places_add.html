@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block master_page_title %}{{ block.super }} | Add Coffee Place{% endblock %}
+
+{% block master_nav_class_places %}on{% endblock %}
+
+{% block master_content %}
+    <h2>Add Coffee Place</h2>
+    <hr />
+    <div class="inset">
+    {% include "coffee/places_form_add.html" %}
+    </div>
+{% endblock %}

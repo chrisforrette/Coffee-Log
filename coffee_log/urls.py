@@ -19,17 +19,20 @@ urlpatterns = patterns('',
     # Coffee Places
     
     url(r'^places/?$', 'coffee_log.coffee.views.places', name='coffee-places'),
+    url(r'^places/add/?$', 'coffee_log.coffee.views.places_add', name='coffee-places-add'),
     url(r'^places/([-_\w]+)/?$', 'coffee_log.coffee.views.place', name='coffee-place'),
     
     # Coffee Roasters
     
     url(r'^roasters/?$', 'coffee_log.coffee.views.roasters', name='coffee-roasters'),
+    url(r'^roasters/add/?$', 'coffee_log.coffee.views.roasters_add', name='coffee-roasters-add'),
     url(r'^roasters/([-_\w]+)/?$', 'coffee_log.coffee.views.roaster', name='coffee-roaster'),
     
     # Coffee Beans
     
-    (r'^beans/?$', 'coffee_log.coffee.views.beans'),
-    (r'^beans/([-_\w]+)/?$', 'coffee_log.coffee.views.bean'),
+    url(r'^beans/?$', 'coffee_log.coffee.views.beans', name='coffee-beans'),
+    url(r'^beans/add/?$', 'coffee_log.coffee.views.beans_add', name='coffee-beans-add'),
+    url(r'^beans/([-_\w]+)/?$', 'coffee_log.coffee.views.bean', name='coffee-bean'),
     
     # Search
     

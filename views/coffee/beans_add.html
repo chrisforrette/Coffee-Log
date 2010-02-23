@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block master_page_title %}{{ block.super }} | Add Coffee Bean{% endblock %}
+
+{% block master_nav_class_beans %}on{% endblock %}
+
+{% block master_content %}
+    <h2>Add Coffee Bean</h2>
+    <hr />
+    <div class="inset">
+    {% include "coffee/beans_form_add.html" %}
+    </div>
+{% endblock %}

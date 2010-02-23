@@ -118,6 +118,22 @@ def places(request):
     coffee_places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog'))
     return render_to_response('coffee/places.html', locals())
 
+# Coffee place add
+
+def places_add(request):
+    
+    from coffee_log.coffee.forms import CoffeePlaceAddForm
+    
+    if request.method == 'POST':
+        form = CoffeePlaceAddForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/places/')
+    else:
+        form = CoffeePlaceAddForm()
+    
+    return render_to_response('coffee/places_add.html', locals())
+
 # Coffee place page
 
 def place(request, slug):
@@ -134,6 +150,22 @@ def place(request, slug):
 def roasters(request):
     coffee_roasters = CoffeeRoaster.objects.filter(status=2)
     return render_to_response('coffee/roasters.html', locals())
+
+# Coffee roasters list
+
+def roasters_add(request):
+    
+    from coffee_log.coffee.forms import CoffeeRoasterAddForm
+    
+    if request.method == 'POST':
+        form = CoffeeRoasterAddForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/roasters/')
+    else:
+        form = CoffeeRoasterAddForm()
+    
+    return render_to_response('coffee/roasters_add.html', locals())
 
 # Coffee roaster page
 
@@ -166,6 +198,22 @@ def bean(request, slug):
     coffee_logs = CoffeeLog.objects.filter(coffee_bean=coffee_bean)[:10]
 
     return render_to_response('coffee/bean.html', locals())
+
+# Coffee beans add
+
+def beans_add(request):
+
+    from coffee_log.coffee.forms import CoffeeBeanAddForm
+
+    if request.method == 'POST':
+        form = CoffeeBeanAddForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/beans/')
+    else:
+        form = CoffeeBeanAddForm()
+    
+    return render_to_response('coffee/beans_add.html', locals())
 
 # Search
 
