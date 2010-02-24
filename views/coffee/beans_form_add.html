@@ -1,4 +1,59 @@
-<form action="{% url coffee-beans-add %}" method="post" accept-charset="utf-8">
-    {{ form }}
-    <input type="submit" name="Submit" value="Add Coffee Bean" />
+<form class="form-3-col" action="{% url coffee-beans-add %}" method="post" accept-charset="utf-8">
+    
+    <div class="col-3-l">
+        <div id="field-roaster" class="field field-select">
+            {{ form.roaster.label_tag }}
+            <div class="input">
+                {{ form.roaster }}
+            </div>
+            {% if form.roaster.errors %}
+            <div class="errors">
+                {{ form.roaster.errors }}
+            </div>
+            {% endif %}
+            {% if form.roaster.help_text %}
+            <div class="hint">{{ form.roaster.help_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-3-c">
+        <div id="field-name" class="field field-text">
+            {{ form.name.label_tag }}
+            <div class="input">
+                {{ form.name }}
+            </div>
+            {% if form.name.errors %}
+            <div class="errors">
+                {{ form.name.errors }}
+            </div>
+            {% endif %}
+            {% if form.name.help_text %}
+            <div class="hint">{{ form.name.help_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-3-r">
+        <div id="field-type" class="field field-text">
+            {{ form.type.label_tag }}
+            <div class="input">
+                {{ form.type }}
+            </div>
+            {% if form.type.errors %}
+            <div class="errors">
+                {{ form.type.errors }}
+            </div>
+            {% endif %}
+            {% if form.type.help_text %}
+            <div class="hint">{{ form.type.help_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="cf"></div>
+    
+    <hr />
+    <div class="inset">
+        <div class="field field-submit">
+            <div class="input"><input type="submit" name="submit" value="Add Coffee Bean" /></div>
+        </div>
+    </div>
 </form>

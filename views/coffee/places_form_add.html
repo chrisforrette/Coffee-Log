@@ -1,4 +1,94 @@
-<form action="{% url coffee-places-add %}" method="post" accept-charset="utf-8">
-    {{ form }}
-    <input type="submit" name="Submit" value="Add Coffee Place" />
-</form>
+    <form class="form-3-col" action="{% url coffee-places-add %}" method="post" accept-charset="utf-8">
+        <div class="col-3-l">
+            <div id="field-name" class="field field-text">
+                {{ form.name.label_tag }}
+                <div class="input">
+                    {{ form.name }}
+                </div>
+                {% if form.name.errors %}
+                <div class="errors">
+                    {{ form.name.errors }}
+                </div>
+                {% endif %}
+                {% if form.name.help_text %}
+                <div class="hint">{{ form.name.help_text }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="cf"></div>
+        
+        <div class="col-3-l">
+            <div id="field-address" class="field field-text">
+                {{ form.address.label_tag }}
+                <div class="input">
+                    {{ form.address }}
+                </div>
+                {% if form.address.errors %}
+                <div class="errors">
+                    {{ form.address.errors }}
+                </div>
+                {% endif %}
+                {% if form.address.help_text %}
+                <div class="hint">{{ form.address.help_text }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="cf"></div>
+        
+        <div class="col-3-l">
+            <div id="field-city" class="field field-text">
+                {{ form.city.label_tag }}
+                <div class="input">
+                    {{ form.city }}
+                </div>
+                {% if form.city.errors %}
+                <div class="errors">
+                    {{ form.city.errors }}
+                </div>
+                {% endif %}
+                {% if form.city.help_text %}
+                <div class="hint">{{ form.city.help_text }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-3-c">
+            <div id="field-state" class="field field-text">
+                {{ form.state.label_tag }}
+                <div class="input">
+                    {{ form.state }}
+                </div>
+                {% if form.state.errors %}
+                <div class="errors">
+                    {{ form.state.errors }}
+                </div>
+                {% endif %}
+                {% if form.state.help_text %}
+                <div class="hint">{{ form.state.help_text }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-3-r">
+            <div id="field-zip" class="field field-text">
+                {{ form.zip.label_tag }}
+                <div class="input">
+                    {{ form.zip }}
+                </div>
+                {% if form.zip.errors %}
+                <div class="errors">
+                    {{ form.zip.errors }}
+                </div>
+                {% endif %}
+                {% if form.zip.help_text %}
+                <div class="hint">{{ form.zip.help_text }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="cf"></div>
+        
+        <hr />
+        <div class="inset">
+            <div class="field field-submit">
+                <div class="input"><input type="submit" name="submit" value="Add Coffee Place" /></div>
+            </div>
+        </div>
+    </form>
