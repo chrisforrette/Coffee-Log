@@ -3,7 +3,13 @@
 {% block master_nav_class_users %}on{% endblock %}
 
 {% block master_content %}
-    <h2>Users</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first last on"><a href="{% url users %}">List</a></li>
+        </ul>
+        <h2>Users</h2>
+        <div class="cf"></div>
+    </div>
     <hr />
     <div class="inset">
         <ul>

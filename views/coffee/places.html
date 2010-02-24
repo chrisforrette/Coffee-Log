@@ -58,7 +58,14 @@
     {#     <div class="field field-submit"><input type="submit" name="submit" value="Go" /></div> #}
     {#     <div class="cf"></div> #}
     {# </form> #}
-    <h2>Coffee Places</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first on"><a href="{% url coffee-places %}">List</a></li>
+            <li class="last"><a href="{% url coffee-places-add %}">Add</a></li>
+        </ul>
+        <h2>Coffee Places</h2>
+        <div class="cf"></div>
+    </div>
     <hr />
     <div class="inset">
         <div class="hd-sort">

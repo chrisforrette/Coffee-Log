@@ -5,7 +5,14 @@
 {% block master_nav_class_beans %}on{% endblock %}
 
 {% block master_content %}
-    <h2>Coffee Beans</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first on"><a href="{% url coffee-beans %}">List</a></li>
+            <li class="last"><a href="{% url coffee-beans-add %}">Add</a></li>
+        </ul>
+        <h2>Coffee Beans</h2>
+        <div class="cf"></div>
+    </div>
     <hr />
     <div class="inset">
         <ul>

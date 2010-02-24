@@ -13,7 +13,7 @@ def index(request):
     
     # Get coffee drinks and counts
     
-    drinks = CoffeeDrink.objects.all().annotate(Count('coffeelog'))
+    drinks = CoffeeDrink.objects.filter(status=2).annotate(Count('coffeelog'))
     drink_names = []
     drink_counts = []
     drink_pcts = []
@@ -32,7 +32,7 @@ def index(request):
     
     # Count place visits
     
-    places = CoffeePlace.objects.all().annotate(Count('coffeelog'))
+    places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog'))
     place_names = []
     place_counts = []
     place_pcts = []
@@ -49,7 +49,7 @@ def index(request):
     
     # Count homemade
     
-    homemade = CoffeeLog.objects.values('is_homemade').annotate(count=Count('pk'))
+    homemade = CoffeeLog.objects.values('is_homemade').filter(status=2).annotate(count=Count('pk'))
     homemade_names = ['Homemade', 'Not Homemade']
     homemade_counts = {}
     homemade_pcts = []

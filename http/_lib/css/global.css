@@ -114,7 +114,7 @@ LAYOUT
     padding: 5px 0;
 }
 
-.inset { padding: 25px; }
+.inset, .inset-submit { padding: 25px; }
 .inset-hor { padding: 0 25px; }
 .inset-vert { padding: 25px 0; }
 .inset-lrb { padding: 0 25px 25px;}
@@ -155,18 +155,13 @@ LAYOUT
 }
 
 .col-3-l {
-    padding-left: 25px;
-    padding-right: 13px;
+    margin-left: 25px;
 }
 
-.col-3-c {
-    padding-left: 14px;
-    padding-right: 14px;
-}
-
+.col-3-l,
+.col-3-c,
 .col-3-r {
-    padding-right: 25px;
-    padding-right: 13px;
+    margin-right: 25px;
 }
 
 #footer {
@@ -304,10 +299,6 @@ HEADER
     background-color: #ccb78f;
 }
 
-#content .hd-bar a.btn-go-hd {
-    background-color: #e5cda1;
-}
-
 /*
 ----------------------------------------------------
 FORMS
@@ -420,10 +411,6 @@ div.selector select {
     margin-bottom: 0;
 }
 
-.form-3-col .field-submit {
-    padding-bottom: 25px;
-}
-
 /*
 ----------------------------------------------------
 PAGES
@@ -434,19 +421,21 @@ PAGES
     float: left;
 }
 
-#content a.btn-go-hd {
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    background: #ccb78f url('/_img/icons/icn_arrow_go.gif') 94% 50% no-repeat;
-    color: #99896b;
-    font-size: 11px;
-    margin: 10px 12px;
-    float: right;
-    padding: 4px 24px 4px 12px;
+a.btn-go-hd {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    background: #ffedcc url('/_img/icons/icn_arrow_go.png') 94% 50% no-repeat;
+    color: #B3A07D;
+    padding: 6px 22px 6px 18px;
 }
 
-#content a.btn-go-hd:hover {
-    color: #665b47;
+a.btn-go-hd:hover {
+    background-color: #fff;
+}
+
+.hd-bar a.btn-go-hd {
+    margin: 9px 11px 0 0;
+    float: right;
 }
 
 .pg-head-form-search {
@@ -474,8 +463,8 @@ PAGES
 
 .pg-head .section-nav {
     float: right;
-    margin-right: 9px;
-    margin-top: 4px;
+    margin-right: 11px;
+    margin-top: 6px;
 }
 
 .section-nav li {
@@ -487,10 +476,11 @@ PAGES
     background-color: #ffedcc;
     color: #b3a07d;
     display: block;
-    padding: 8px 20px;
+    padding: 6px 20px;
 }
 
-.section-nav a:hover {
+.section-nav a:hover,
+.section-nav .on a {
     background-color: #fff;
 }
 
@@ -581,6 +571,7 @@ ul.hot li .tidbit {
 
 /* COFFEE LOG FORM */
 
+.inset-submit,
 #form-coffee-log .inset,
 #form-coffee-log .inset h3 {
     padding-bottom: 10px;
@@ -730,4 +721,24 @@ COFFEE PLACES
     border: 5px solid #D9C298;
     height: 150px;
     width: 200px;
+}
+
+/* USER PROFILE */
+
+.stat-box h4,
+.stat-box h5 {
+    line-height: 100%;
+}
+
+.stat-box h4 {
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+h5.big-stat {
+    font-size: 40px;
+}
+
+h5.sub-stat {
+    font-size: 18px;
 }

@@ -1,6 +1,19 @@
-{% extends "coffee/roasters.html" %}
+{% extends "master.html" %}
 
-{% block roasters_content %}
+{% block master_page_title %}{{ block.super }} | Coffee Roasters{% endblock %}
+
+{% block master_nav_class_roasters %}on{% endblock %}
+
+{% block master_content %}
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first on"><a href="{% url coffee-roasters %}">List</a></li>
+            <li class="last"><a href="{% url coffee-roasters-add %}">Add</a></li>
+        </ul>
+        <h2>Coffee Roasters</h2>
+        <div class="cf"></div>
+    </div>
+    <hr />
     <div class="inset">
         <ul>
             {% for coffee_roaster in coffee_roasters %}

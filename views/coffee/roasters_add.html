@@ -1,7 +1,18 @@
-{% extends "coffee/roasters.html" %}
+{% extends "master.html" %}
 
 {% block master_page_title %}{{ block.super }} | Add Coffee Roaster{% endblock %}
 
-{% block roasters_content %}
+{% block master_nav_class_roasters %}on{% endblock %}
+
+{% block master_content %}
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first"><a href="{% url coffee-roasters %}">List</a></li>
+            <li class="last on"><a href="{% url coffee-roasters-add %}">Add</a></li>
+        </ul>
+        <h2>Add Coffee Roaster</h2>
+        <div class="cf"></div>
+    </div>
+    <hr />
     {% include "coffee/roasters_form_add.html" %}
 {% endblock %}

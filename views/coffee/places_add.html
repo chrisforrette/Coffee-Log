@@ -5,7 +5,14 @@
 {% block master_nav_class_places %}on{% endblock %}
 
 {% block master_content %}
-    <h2>Add Coffee Place</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first"><a href="{% url coffee-places %}">List</a></li>
+            <li class="last on"><a href="{% url coffee-places-add %}">Add</a></li>
+        </ul>
+        <h2>Add Coffee Place</h2>
+        <div class="cf"></div>
+    </div>
     <hr />
     <div class="inset">
     {% include "coffee/places_form_add.html" %}

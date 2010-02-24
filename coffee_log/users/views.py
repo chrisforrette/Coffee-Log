@@ -74,6 +74,30 @@ def confirm(request, confirmation_key):
 def profile(request, username):
     profile_user = get_object_or_404(User, username=username, is_active=1)
     
-    coffee_logs = CoffeeLog.objects.filter(status=2, user=profile_user.pk)
+    coffee_logs = CoffeeLog.objects.filter(status=2, user=profile_user.pk)[:10]
+    
+    # ---- Stats
+    
+    # Average per day
+    
+    avg_logs_per_day = CoffeeLog.objects.get_avg_per_day(profile_user.pk)
+    
+    # Favorite drink
+    
+    favorite_drink = CoffeeDrink.objects.filter(status=2, coffeelog__user=profile_user.pk).annotate(count=Count('coffeelog__coffee_drink')).order_by('-count')[:1]
+    if favorite_drink:
+        favorite_drink = favorite_drink[0]
+    
+    # Favorite place
+    
+    favorite_place = CoffeePlace.objects.filter(status=2, coffeelog__user=profile_user.pk).annotate(count=Count('coffeelog__coffee_place')).order_by('-count')[:1]
+    if favorite_place:
+        favorite_place = favorite_place[0]
+    
+    # Favorite bean
+
+    favorite_bean = CoffeeBean.objects.filter(status=2, coffeelog__user=profile_user.pk).annotate(count=Count('coffeelog__coffee_bean')).order_by('-count')[:1]
+    if favorite_bean:
+        favorite_bean = favorite_bean[0]
     
     return render_to_response('users/profile.html', locals())

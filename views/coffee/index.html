@@ -3,7 +3,13 @@
 {% block master_nav_class_logs %}on{% endblock %}
 
 {% block master_content %}
-    <h2>Coffee Consumption Timeline</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first last"><a href="{% url coffee-log-add %}">Add</a></li>
+        </ul>
+        <h2>Coffee Consumption Timeline</h2>
+        <div class="cf"></div>
+    </div>
     <hr class="dk" />
     {% include "coffee/coffee_log_list.html" %}
     

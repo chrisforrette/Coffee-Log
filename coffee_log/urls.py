@@ -40,7 +40,7 @@ urlpatterns = patterns('',
     
     # Users
     
-    (r'^users/?$', 'coffee_log.users.views.index'),
+    url(r'^users/?$', 'coffee_log.users.views.index', name='users'),
     (r'^users/login/?$', 'django.contrib.auth.views.login', {'template_name': 'users/login.html'}),
     (r'^users/logout/?$', 'coffee_log.users.views.logout_view'),
     (r'^users/register/?$', 'coffee_log.users.views.register'),

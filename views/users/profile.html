@@ -2,15 +2,49 @@
 
 {% block master_page_title %}{{ block.super }} | Users | {{ profile_user.username }}{% endblock %}
 
+{% block master_nav_class_users %}on{% endblock %}
+
 {% block master_content %}
-    <h2>{{ profile_user.username }}</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first last"><a href="{% url users %}">List</a></li>
+        </ul>
+        <h2>User Profile: {{ profile_user.username }}</h2>
+        <div class="cf"></div>
+    </div>
+    <hr />
+    
+    <h3>Stats</h3>
+    <hr />
+    <div>
+        <div class="col-3-l stat-box">
+            <h4>Favorite Drink</h4>
+            <h5 class="big-stat">{{ favorite_drink.name }}</h5>
+        </div>
+        <div class="col-3-c stat-box">
+            <h4>Favorite Place</h4>
+            <h5 class="big-stat"><a href="{{ favorite_place.get_absolute_url }}">{{ favorite_place.name }}</a></h5>
+        </div>
+        <div class="col-3-r stat-box">
+            <h4>Favorite Bean</h4>
+            <h5 class="big-stat"><a href="{{ favorite_bean.get_absolute_url }}">{{ favorite_bean.name }}</a></h5>
+            <h5 class="sub-stat">(<a href="{{ favorite_bean.roaster.get_absolute_url }}">{{ favorite_bean.roaster.name }}</a>)</h5>
+        </div>
+        <div class="cf"></div>
+    </div>
+    <div>
+        <div class="col-3-l stat-box">
+            <h4>Average Coffees per Day</h4>
+            <h5 class="big-stat">{{ avg_logs_per_day }}</h5>
+        </div>
+        <div class="cf"></div>
+    </div>
     <hr />
     
     {% if coffee_logs %}        
     <h3>Recent Logs</h3>
     <hr class="dk" />
     {% include "coffee/coffee_log_list.html" %}
-    <hr />
     {% endif %}
     
 {% endblock %}

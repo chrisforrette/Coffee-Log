@@ -190,10 +190,55 @@ def create_coffee_place_geo_point(sender, instance, signal, *args, **kwargs):
 # Register CoffeePlace post save signal
 
 models.signals.post_save.connect(create_coffee_place_geo_point, sender=CoffeePlace)
+    
+# Coffee logs manager
+
+class CoffeeLogManager(models.Manager):
+    
+    def get_avg_per_day(self, user_id):
+        
+        from django.db import connection
+        cursor = connection.cursor()
+        
+        if user_id:
+            cond = "AND user_id = '" + str(user_id) + "'"
+        else:
+            cond = ""
+        
+        sql = """SELECT 
+                    DATE(consumption) AS date,
+                    COUNT(id) AS count
+                FROM
+                    coffee_coffeelog
+                WHERE
+                    status = '2'
+                    """ + cond + """
+                GROUP BY
+                    date
+                """
+        
+        # Execute and collect
+        
+        cursor.execute(sql)
+        
+        total_days = 0
+        logs = 0
+        
+        for row in cursor.fetchall():
+            total_days += 1
+            logs += int(row[1])
+        
+        # Calculate average
+        
+        if total_days > 0:
+            return round(float(logs)/float(total_days), 2)
+        else:
+            return 0
 
 # Coffee Logs
 
 class CoffeeLog(models.Model):
+
     user = models.ForeignKey(User, blank=True, null=True)
     coffee_drink = models.ForeignKey(CoffeeDrink)
     coffee_bean = models.ForeignKey(CoffeeBean, blank=True, null=True)
@@ -205,7 +250,9 @@ class CoffeeLog(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
-    
+
+    objects = CoffeeLogManager()
+
     def __unicode__(self):
         display = ''
         if self.coffee_drink_size:
@@ -214,7 +261,7 @@ class CoffeeLog(models.Model):
         if self.coffee_place:
             display += ' at ' + str(self.coffee_place)
         return display
-    
+
     class Meta:
         ordering = ['-consumption']
         verbose_name_plural = 'Coffee Logs'
