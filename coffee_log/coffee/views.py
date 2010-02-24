@@ -8,7 +8,7 @@ from coffee_log.coffee.models import *
 # Home page
 
 def index(request):
-    print dir(request.user)
+    
     coffee_logs = CoffeeLog.objects.filter(status=2)[:10]
     
     # Get coffee drinks and counts
@@ -103,19 +103,14 @@ def coffee_log_add(request):
 # Coffee places list
 
 def places(request):
+    from django.core.paginator import Paginator
+    current_page = request.GET.get('p', 1)
+    paginator = Paginator(CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog')), 5)
     
-    # from coffee_log.google_maps import get_geo_point
-    # from django.contrib.gis.measure import Distance, D
-    # 
-    # 
-    # q = '7719 N. McKenna Ave, Portland, OR 97203'
-    # proximity = request.GET.get('proximity', 50)
-    # point = get_geo_point(q)
-    # 
-    # if point:
-    #     print CoffeePlaceGeoPoint.objects.filter(geo_point__distance_lte=(point[1], D(mi=100)))
+    if (int(current_page) > paginator.num_pages or int(current_page) < 1):
+        current_page = 1
     
-    coffee_places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog'))
+    paginate = paginator.page(current_page)
     return render_to_response('coffee/places.html', locals())
 
 # Coffee place add
@@ -240,7 +235,6 @@ def search_autocomplete(request, which):
             rows = CoffeeBean.search.query(query)
             # rows = CoffeeBean.objects.filter(name__icontains=query) 
 
-        print rows
         if rows:
             for row in rows:
                 results += '%d|%s\n' % (row.pk, row.name)

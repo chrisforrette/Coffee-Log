@@ -500,6 +500,44 @@ a.btn-go-hd:hover {
 
 /*
 ----------------------------------------------------
+PAGINATION
+----------------------------------------------------
+*/
+
+.pagination {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border: 1px solid #d9c298;
+    padding: 5px;
+    text-align: center;
+}
+
+.pagination a {
+    padding: 5px 8px;
+}
+
+.pagination ol a:hover {
+    background-color: #d9c298;
+}
+
+.pagi-top {
+    margin-bottom: 10px;
+}
+
+.pagination .pagi-prev {
+    float: left;
+}
+
+.pagination .pagi-next {
+    float: right;
+}
+
+.pagination ol li {
+    display: inline;
+}
+
+/*
+----------------------------------------------------
 COFFEE LOGS
 ----------------------------------------------------
 */
