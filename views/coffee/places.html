@@ -7,7 +7,7 @@
         
         var aPlaces = [
         
-        {% for coffee_place in coffee_places %}
+        {% for coffee_place in paginate.object_list %}
             {% if coffee_place.coffeeplacegeopoint %}
             {
                 'id': 'place-map-{{ coffee_place.pk }}',
