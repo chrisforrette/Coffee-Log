@@ -32,8 +32,14 @@
 {% endblock %}
 
 {% block master_content %}
-    <a href="/places/" class="btn-go-hd">See All Coffee Places</a>
-    <h2>{{ coffee_place.name }}</h2>
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first"><a href="{% url coffee-places %}">List</a></li>
+            <li class="last"><a href="{% url coffee-places-add %}">Add</a></li>
+        </ul>
+        <h2>Coffee Place: {{ coffee_place.name }}</h2>
+        <div class="cf"></div>
+    </div>
     <hr />
     <div class="cf"></div>
     <div class="inset">

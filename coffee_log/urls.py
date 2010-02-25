@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     
     url(r'^places/?$', 'coffee_log.coffee.views.places', name='coffee-places'),
     url(r'^places/add/?$', 'coffee_log.coffee.views.places_add', name='coffee-places-add'),
-    url(r'^places/([-_\w]+)/?$', 'coffee_log.coffee.views.place', name='coffee-place'),
+    url(r'^places/place/([-_\w]+)/?$', 'coffee_log.coffee.views.place', name='coffee-place'),
     
     # Coffee Roasters
     
