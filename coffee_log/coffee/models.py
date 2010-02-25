@@ -32,7 +32,7 @@ class CoffeeBean(models.Model):
     roaster = models.ForeignKey(CoffeeRoaster, blank=True)
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
-    type = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
