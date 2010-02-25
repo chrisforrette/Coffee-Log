@@ -135,5 +135,23 @@
             </li>
             {% endfor %}
         </ul>
+        <div class="pagination pagi-bot">
+            <div class="pagi-prev">
+                {% if paginate.has_previous %}<a href="{% url coffee-places %}?p={{ paginate.previous_page_number }}" class="btn-prev">Prev Page</a>
+                {% else %}&nbsp;
+                {% endif %}
+            </div>
+            <div class="pagi-next">
+                {% if paginate.has_next %}<a href="{% url coffee-places %}?p={{ paginate.next_page_number }}" class="btn-next">Next Page</a>
+                {% else %}&nbsp;
+                {% endif %}
+            </div>
+            <ol>
+                {% for page in paginator.page_range %}
+                <li{% ifequal current_page page  %} class="on"{% endifequal %}><a href="{% url coffee-places %}?p={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+            </ol>
+            <div class="cf"></div>
+        </div>
     </div>
 {% endblock %}
