@@ -5,7 +5,13 @@
 {% block master_content %}
     <div class="pg-head">
         <ul class="section-nav">
-            <li class="first last"><a href="{% url coffee-log-add %}">Add</a></li>
+            <li class="first last">
+                {% if request.user.is_authenticated %}
+                <a href="{% url coffee-log-add %}">Add Coffee Log</a>
+                {% else %}
+                <a href="{% url users-register %}">Register Now!</a>
+                {% endif %}
+            </li>
         </ul>
         <h2>Coffee Consumption Timeline</h2>
         <div class="cf"></div>

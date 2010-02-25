@@ -1,5 +1,7 @@
 {% extends "master.html" %}
 
+{% block master_nav_class_users %}on{% endblock %}
+
 {% block master_content %}
     <h2>Confirm</h2>
     <hr />
@@ -7,7 +9,7 @@
         {% if activated %}
         <h3>Hooray!</h3>
         <p>
-            Your account has been activated! <a href="/users/login/">Click here</a> to log in and tell the world about all the great coffee you're drinking!
+            Your account has been activated! <a href="{% url users-login %}">Click here</a> to log in and tell the world about all the great coffee you're drinking!
         </p>
         {% else %}
         <h3>Error</h3>

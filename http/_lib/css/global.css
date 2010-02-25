@@ -105,8 +105,10 @@ LAYOUT
 }
 
 #content{
+    -webkit-border-radius-topright: 4px;
     -webkit-border-radius-bottomleft: 4px;
     -webkit-border-radius-bottomright: 4px;
+    -moz-border-radius-topright: 4px;
     -moz-border-radius-bottomleft: 4px;
     -moz-border-radius-bottomright: 4px;
     background-color: #e6cea1;
@@ -393,7 +395,7 @@ div.selector select {
 .form-full-page .input,
 .form-full-page .hint,
 .form-full-page .errors {
-    margin-left: 170px;
+    margin-left: 180px;
 }
 
 /* 3-COLUMN FORM */

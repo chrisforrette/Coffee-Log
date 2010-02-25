@@ -1,10 +1,12 @@
 {% extends "master.html" %}
 
+{% block master_nav_class_users %}on{% endblock %}
+
 {% block master_content %}
     <h2>Register</h2>
     <hr />
     <div class="inset">
-        <form action="/users/register/" method="post" accept-charset="utf-8" class="form-full-page">
+        <form action="{% url users-register %}" method="post" accept-charset="utf-8" class="form-full-page">
             <ol>
                 <li class="field field-text">
                     {{ form.username.label_tag }}
