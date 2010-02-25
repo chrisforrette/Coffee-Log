@@ -11,7 +11,7 @@ class CoffeeLogAddForm(forms.ModelForm):
     # ---- Set fields
     
     consumption = forms.SplitDateTimeField(initial=now, label='Consumption Date/Time')
-    coffee_bean = forms.ModelChoiceField(queryset=CoffeeBean.objects.filter(status=2), empty_label='--- Note Sure --', required=False)
+    coffee_bean = forms.ModelChoiceField(queryset=CoffeeBean.objects.filter(status=2), empty_label='--- Not Sure --', required=False)
     coffee_place = forms.ModelChoiceField(queryset=CoffeePlace.objects.filter(status=2), empty_label='--- N/A ---', required=False)
     coffee_drink = forms.ModelChoiceField(queryset=CoffeeDrink.objects.filter(status=2), empty_label=None, required=True, error_messages={'required': 'Please select a drink'})
     coffee_drink_size = forms.ModelChoiceField(queryset=CoffeeDrinkSize.objects.filter(status=2), empty_label=None, label=u'Drink Size')
