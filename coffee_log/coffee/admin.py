@@ -6,6 +6,7 @@ class CoffeeRoasterAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
         'url',
+        'status',
     )
     list_filter = ('status',)
     prepopulated_fields = {
@@ -16,15 +17,22 @@ class CoffeeBeanAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
         'roaster',
+        'status',
     )
+    list_filter = ('status',)
     prepopulated_fields = {
         "slug": ("name",)
     }
 
 class CoffeeDrinkAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 
+        'status',
+    )
     prepopulated_fields = {
         "slug": ("name",)
     }
+    list_filter = ('status',)
 
 class CoffeeDrinkSizeAdmin(admin.ModelAdmin):
     prepopulated_fields = {
@@ -38,20 +46,22 @@ class CoffeePlaceAdmin(admin.ModelAdmin):
         'city',
         'state',
         'zip',
+        'status',
     )
     list_filter = ('status',)
     prepopulated_fields = {
-        "slug": ("name",)
+        'slug': ('name',)
     }
 
 class CoffeePlaceCategoryAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
         'created',
+        'status',
     )
     list_filter = ('status',)
     prepopulated_fields = {
-        "slug": ("name",)
+        'slug': ('name',)
     }
 
 class CoffeeLogAdmin(admin.ModelAdmin):
@@ -63,6 +73,7 @@ class CoffeeLogAdmin(admin.ModelAdmin):
         'coffee_place',
         'is_homemade',
         'coffee_bean',
+        'status',
     )
     ordering = ['-consumption']
     list_filter = list_display

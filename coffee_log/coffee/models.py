@@ -13,7 +13,7 @@ class CoffeeRoaster(models.Model):
     url = models.URLField(max_length=255, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
     
     def __unicode__(self):
         return self.name
@@ -35,7 +35,7 @@ class CoffeeBean(models.Model):
     type = models.CharField(max_length=255, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
     
     search = djangosphinx.SphinxSearch('coffee_coffeebean')
     
@@ -57,7 +57,7 @@ class CoffeeDrink(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
     
     def __unicode__(self):
         return force_unicode(self.name)
@@ -76,7 +76,7 @@ class CoffeeDrinkSize(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
 
     def __unicode__(self):
         return self.name
@@ -93,7 +93,7 @@ class CoffeePlaceCategory(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
 
     def __unicode__(self):
         return self.name
@@ -116,7 +116,7 @@ class CoffeePlace(models.Model):
     zip = models.CharField(max_length=15)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=1)
+    status = models.SmallIntegerField(max_length=1, choices=STATUS_OPTIONS, default=2)
     
     def __unicode__(self):
         return self.name
