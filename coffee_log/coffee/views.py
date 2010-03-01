@@ -32,7 +32,7 @@ def index(request):
     
     # Count place visits
     
-    places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog'))
+    places = CoffeePlace.objects.filter(status=2).annotate(Count('coffeelog')).order_by('-coffeelog__count')
     place_names = []
     place_counts = []
     place_pcts = []
