@@ -1,0 +1,9 @@
+{% extends "mobile.html" %}
+
+{% block master_content %}
+    {% if filename %}<h2>Uploaded: {{ filename }}</h2>{% endif %}
+    <form action="/iphone/test/" method="post" enctype="multipart/form-data">
+        <input type="file" name="some_file" value="" />
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+{% endblock %}

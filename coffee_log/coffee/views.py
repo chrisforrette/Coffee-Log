@@ -13,7 +13,7 @@ def index(request):
     
     # Get coffee drinks and counts
     
-    drinks = CoffeeDrink.objects.filter(status=2).annotate(Count('coffeelog'))
+    drinks = CoffeeDrink.objects.filter(status=2).annotate(Count('coffeelog')).order_by('coffeelog__count')
     drink_names = []
     drink_counts = []
     drink_pcts = []
@@ -241,3 +241,10 @@ def search_autocomplete(request, which):
     
     # return render_to_response('autocomplete.html', locals())
     return HttpResponse(results)
+
+def iphone_test(request):
+    
+    if request.method == 'POST':
+        filename = request.FILES['some_file']
+    
+    return render_to_response('iphone/test.html', locals())

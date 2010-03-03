@@ -48,5 +48,9 @@ urlpatterns = patterns('',
     (r'^users/confirm/([a-z0-9]+)/?$', 'coffee_log.users.views.confirm'),
     (r'^users/([-_\w]+)/?$', 'coffee_log.users.views.profile'),
     
+    # iPhone
+    
+    (r'^iphone/test/?$', 'coffee_log.coffee.views.iphone_test'),
+    
     
 )
