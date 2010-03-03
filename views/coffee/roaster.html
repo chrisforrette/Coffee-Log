@@ -5,10 +5,15 @@
 {% block master_nav_class_roasters %}on{% endblock %}
 
 {% block master_content %}
-    <a href="/roasters/" class="btn-go-hd">See All Coffee Roasters</a>
-    <h2>{{ coffee_roaster.name }}</h2>
-    <hr />
-    <div class="cf"></div>
+
+    <div class="pg-head">
+        <ul class="section-nav">
+            <li class="first"><a href="{% url coffee-roasters %}">List</a></li>
+            <li class="last"><a href="{% url coffee-roasters-add %}">Add</a></li>
+        </ul>
+        <h2>{{ coffee_roaster.name }}</h2>
+        <div class="cf"></div>
+    </div>
     
     {% if coffee_places %}
     <h3>Locations</h3>
