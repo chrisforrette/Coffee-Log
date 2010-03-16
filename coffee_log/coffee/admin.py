@@ -5,8 +5,10 @@ from models import *
 class CoffeeRoasterAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
+        'slug',
         'url',
         'status',
+        'created',
     )
     list_filter = ('status',)
     prepopulated_fields = {
@@ -16,8 +18,10 @@ class CoffeeRoasterAdmin(admin.ModelAdmin):
 class CoffeeBeanAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
+        'slug',
         'roaster',
         'status',
+        'created',
     )
     list_filter = ('status',)
     prepopulated_fields = {
@@ -27,7 +31,9 @@ class CoffeeBeanAdmin(admin.ModelAdmin):
 class CoffeeDrinkAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
+        'slug',
         'status',
+        'created',
     )
     prepopulated_fields = {
         "slug": ("name",)
@@ -42,11 +48,13 @@ class CoffeeDrinkSizeAdmin(admin.ModelAdmin):
 class CoffeePlaceAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
+        'slug',
         'address',
         'city',
         'state',
         'zip',
         'status',
+        'created',
     )
     list_filter = ('status',)
     prepopulated_fields = {
@@ -56,8 +64,9 @@ class CoffeePlaceAdmin(admin.ModelAdmin):
 class CoffeePlaceCategoryAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
-        'created',
+        'slug',
         'status',
+        'created',
     )
     list_filter = ('status',)
     prepopulated_fields = {
@@ -74,6 +83,7 @@ class CoffeeLogAdmin(admin.ModelAdmin):
         'is_homemade',
         'coffee_bean',
         'status',
+        'created',
     )
     ordering = ['-consumption']
     list_filter = list_display
